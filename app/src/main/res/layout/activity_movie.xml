@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.movie.MovieActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.jdm.garam.view.BaseAppBar
+            android:id="@+id/movie_base_appbar"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            app:titleText="가람영화관"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <WebView
+            android:id="@+id/movie_webview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_base_appbar"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_button1"/>
+        <Button
+            android:id="@+id/bottom_button1"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_webview"
+            app:layout_constraintEnd_toStartOf="@+id/bottom_button2"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <Button
+            android:id="@+id/bottom_button2"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            app:layout_constraintStart_toEndOf="@+id/bottom_button1"
+            app:layout_constraintEnd_toStartOf="@+id/bottom_button3"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_button1"/>
+        <Button
+            android:id="@+id/bottom_button3"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            app:layout_constraintStart_toEndOf="@+id/bottom_button2"
+            app:layout_constraintEnd_toStartOf="@+id/bottom_button4"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_button1"/>
+        <Button
+            android:id="@+id/bottom_button4"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            app:layout_constraintStart_toEndOf="@+id/bottom_button3"
+            app:layout_constraintEnd_toStartOf="@id/bottom_button5"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_button1"/>
+        <Button
+            android:id="@+id/bottom_button5"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            app:layout_constraintStart_toEndOf="@+id/bottom_button4"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_button1"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

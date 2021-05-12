@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Garam</string>
+    <string name="loading">로딩중</string>
 </resources>
