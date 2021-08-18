@@ -35,6 +35,9 @@ class MovieActivity : ViewBindingActivity<ActivityMovieBinding>() {
             settings.defaultTextEncodingName = Xml.Encoding.UTF_8.name // 한글이 깨지지 않게 UTF8로 읽어들일수 있게 설정
         }
         binding.movieWebview.loadUrl(HOME_URL)
-        binding.movieBaseAppbar.titleText = "가람영화관"
+    }
+
+    override fun subscribe() {
+        TODO("Not yet implemented")
     }
 }

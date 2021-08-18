@@ -14,10 +14,18 @@ abstract class ViewBindingActivity<T : ViewDataBinding> : ActivityBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = DataBindingUtil.setContentView(this, layoutId)
+        initState()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         binding.unbind()
+    }
+
+    open fun initView() = Unit
+    abstract fun subscribe()
+    open fun initState() {
+        initView()
+        subscribe()
     }
 }

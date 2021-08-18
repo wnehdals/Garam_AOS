@@ -1,44 +1,78 @@
 package com.jdm.garam.view
 
 import android.content.Context
-import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.LinearLayout
-import androidx.databinding.DataBindingUtil
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.DrawableRes
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
 import com.jdm.garam.R
-import com.jdm.garam.databinding.BaseAppbarBinding
 
-class BaseAppBar @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0,
-    defStyleRes: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
-    lateinit var binding: BaseAppbarBinding
-    var titleText = ""
-        set(value) {
-            binding.appbarTitle.text = value
-            field = value
+class BaseAppBar(
+    private val context: Context,
+    private val actionBar: ActionBar?
+) {
+    private var isActionBarSet = false
+    private val customAppBarView: View by lazy {
+        LayoutInflater.from(context).inflate(R.layout.base_appbar, null)
+    }
+    var leftButtonClickListener: ((View) -> Unit)? = null
+    var rightButtonClickListener: ((View) -> Unit)? = null
+
+    fun setUpActionBar() {
+        if (actionBar == null) return
+        val params = ActionBar.LayoutParams(
+            ActionBar.LayoutParams.MATCH_PARENT,
+            ActionBar.LayoutParams.MATCH_PARENT
+        )
+
+        with(actionBar) {
+            setCustomView(customAppBarView, params)
+            setDisplayShowCustomEnabled(true)
+            setDisplayHomeAsUpEnabled(false)
+            setDisplayShowTitleEnabled(false)
+            setDisplayShowHomeEnabled(false)
+            val parent = customAppBarView.parent
+            if (parent is Toolbar) {
+                parent.setContentInsetsAbsolute(0, 0)
+            }
         }
+        isActionBarSet = true
+    }
 
-    init {
-        initView()
-        context.theme.obtainStyledAttributes(
-            attrs, R.styleable.BaseAppBar,
-            defStyleAttr, defStyleRes
-        ).apply {
-            titleText = getString(R.styleable.BaseAppBar_titleText) ?: ""
-            recycle()
+    fun setTitle(title: String) {
+        checkCustomActionbarSet()
+        val titleTextView = customAppBarView.findViewById<TextView>(R.id.title_text_view)
+        titleTextView.text = title
+    }
+
+    fun setLeftButtonDrawable(@DrawableRes resId: Int) {
+        checkCustomActionbarSet()
+        val leftButton = customAppBarView.findViewById<ImageView>(R.id.left_button)
+        leftButton.visibility = View.VISIBLE
+        leftButton.setImageResource(resId)
+        leftButton.setColorFilter(ResourcesCompat.getColor(context.resources, R.color.primaryTextColor, null))
+        leftButton.setOnClickListener {
+            leftButtonClickListener?.invoke(leftButton)
         }
     }
 
-    private fun initView() {
-        val inflater: LayoutInflater =
-            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        binding = DataBindingUtil.inflate(inflater, R.layout.base_appbar, this, true)
+    fun setRightButtonDrawable(@DrawableRes resId: Int) {
+        checkCustomActionbarSet()
+        val rightButton = customAppBarView.findViewById<ImageView>(R.id.right_button)
+        rightButton.visibility = View.VISIBLE
+        rightButton.setImageResource(resId)
+        rightButton.setColorFilter(ResourcesCompat.getColor(context.resources, R.color.primaryTextColor, null))
+        rightButton.setOnClickListener {
+            rightButtonClickListener?.invoke(rightButton)
+        }
     }
 
-    private fun setTitle(s: String) {
-        binding.appbarTitle.text = s
+    private fun checkCustomActionbarSet() {
+        if (!isActionBarSet)
+            throw IllegalStateException("Need to set action bar first")
     }
 }

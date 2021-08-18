@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.View
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
@@ -12,44 +13,52 @@ import com.jdm.garam.IProgressDialog
 import com.jdm.garam.ProgressDialog
 import com.jdm.garam.R
 import com.jdm.garam.util.DialogUtil
+import com.jdm.garam.view.BaseAppBar
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import java.lang.IllegalStateException
 
 open class ActivityBase : AppCompatActivity(), IProgressDialog {
     private val compositeDisposable = CompositeDisposable()
-    var progressDialog: ProgressDialog? = null
+    private var progressDialog: ProgressDialog? = null
+    private var baseAppBar: BaseAppBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+    fun setBaseAppBar(title: String = "") {
+        if(supportActionBar == null)
+            throw IllegalStateException("Can not found supportActionBar")
+
+        baseAppBar = BaseAppBar(this, supportActionBar)
+        baseAppBar?.setUpActionBar()
+        setAppBarTitle(title)
+    }
+    fun setAppBarTitle(title: String) {
+        baseAppBar?.setUpActionBar()
+        if(!title.isNullOrEmpty()) {
+            baseAppBar?.setTitle(title)
+        }
+    }
+    fun appBarLeftButtonClicked(callback: (View) -> Unit) {
+        baseAppBar?.leftButtonClickListener = callback
+    }
+    fun appBarRightButtonClicked(callback: (View) -> Unit) {
+        baseAppBar?.rightButtonClickListener = callback
+    }
+    fun setBackKey() {
+        baseAppBar?.setLeftButtonDrawable(R.drawable.ic_arrow_left)
+        appBarLeftButtonClicked {
+            onBackPressed()
+        }
     }
 
     fun addDisposable(vararg disposables: Disposable) {
         compositeDisposable.addAll(*disposables)
     }
 
-    fun startActivity(javaClass: Class<*>, extras: ((Bundle) -> Unit)? = null) {
-        val intent = Intent(this, javaClass)
-        if (extras != null) {
-            val bundle = Bundle()
-            extras(bundle)
-            intent.putExtras(bundle)
-        }
-        startActivity(intent)
-    }
 
-    fun startActivityForResult(
-            javaClass: Class<*>,
-            requestCode: Int,
-            extras: ((Bundle) -> Unit)? = null
-    ) {
-        val intent = Intent(this, javaClass)
-        if (extras != null) {
-            val bundle = Bundle()
-            extras(bundle)
-            intent.putExtras(bundle)
-        }
-        startActivityForResult(intent, requestCode)
-    }
+
 
     override fun onDestroy() {
         super.onDestroy()
