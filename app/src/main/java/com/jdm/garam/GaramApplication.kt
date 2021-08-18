@@ -5,8 +5,8 @@ import android.content.Context
 import com.jdm.garam.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
+import org.koin.core.context.startKoin
 
 class GaramApplication: Application() {
     override fun onCreate() {

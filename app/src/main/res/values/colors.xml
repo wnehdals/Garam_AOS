@@ -21,4 +21,14 @@
     <color name="blue_500">#ff238bfe</color>
     <color name="blue_200">#238bfe</color>
     <color name="blue_100">#bddcff</color>
+
+    <color name="red_100">#ffb1b1"</color>
+    <color name="red_200">#eb5757</color>
+
+    <color name="green_100">#a9f2a4</color>
+    <color name="green_200">#27ae60</color>
+
+    <color name="blue_600">#2f80ed</color>
+    <color name="blue_700">#116acc</color>
+    <color name="blue_800">#b3cee2</color>
 </resources>

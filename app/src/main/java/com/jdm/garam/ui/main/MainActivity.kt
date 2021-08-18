@@ -35,6 +35,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), BottomNavigatio
     }
     override fun initView() = with(binding) {
         bottomNav.setOnNavigationItemSelectedListener(this@MainActivity)
+        setAppBarTitle("")
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
