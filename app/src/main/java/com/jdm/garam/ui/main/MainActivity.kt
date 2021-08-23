@@ -1,9 +1,5 @@
 package com.jdm.garam.ui.main
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +9,6 @@ import com.jdm.garam.base.ViewBindingActivity
 import com.jdm.garam.databinding.ActivityMainBinding
 import com.jdm.garam.ui.bus.BusFragment
 import com.jdm.garam.ui.home.HomeFragment
-import com.jdm.garam.ui.movie.MovieActivity
 import com.jdm.garam.ui.movie.TheaterFragment
 import com.jdm.garam.util.MainTabMenu
 import com.jdm.garam.util.MenuChangeEventBus

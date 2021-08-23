@@ -13,6 +13,8 @@
     <string name="checking">검사중</string>
     <string name="negative_judge">음성판정</string>
     <string name="suspicious_human">자가격리자</string>
+    <string name="corona_info_title">삼척시 코로나 정보</string>
+    <string name="finish_for_more_click">한번 더 누르시면 앱을 종료 합니다.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

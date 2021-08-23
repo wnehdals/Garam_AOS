@@ -5,9 +5,9 @@
     tools:context=".ui.home.pager.PagerFragment1">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="100dp"
         android:layout_margin="16dp"
-        android:background="@drawable/bg_rectangle_radius_blue_600">
+        android:background="@drawable/bg_rect_radius_16_blue_bg">
         <TextView
             android:id="@+id/item_pager1_title"
             android:layout_width="wrap_content"
@@ -15,10 +15,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:text="@string/inspected_human"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,8 +39,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/current"
                         android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/white"/>
+                        android:textSize="12sp"
+                        android:textColor="@color/black"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -50,15 +50,15 @@
                             android:id="@+id/item_pager1_current_number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/blue_700"
-                            android:textSize="24sp"
+                            android:textColor="@color/blue_prim_text_color"
+                            android:textSize="22sp"
                             tools:text="2"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:textSize="14sp"
-                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
                             android:text="@string/count"/>
                     </LinearLayout>
 
@@ -67,7 +67,7 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginVertical="8dp"
-                    android:background="@color/white"/>
+                    android:background="@color/blue_sub_text_color"/>
 
                 <LinearLayout
                     android:id="@+id/item_pager1_linearlayout_2"
@@ -81,8 +81,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/cured"
                         android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/white"/>
+                        android:textSize="12sp"
+                        android:textColor="@color/black"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -92,15 +92,15 @@
                             android:id="@+id/item_pager1_cured_number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/blue_700"
-                            android:textSize="24sp"
+                            android:textColor="@color/blue_sub_text_color"
+                            android:textSize="22sp"
                             tools:text="2"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:textSize="14sp"
-                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
                             android:text="@string/count"/>
                     </LinearLayout>
 
@@ -110,14 +110,46 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginVertical="8dp"
-                    android:background="@color/white"/>
+                    android:background="@color/blue_sub_text_color"/>
                 <LinearLayout
                     android:id="@+id/item_pager1_linearlayout_3"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    />
+                    android:gravity="center"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/item_pager1_count_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/blue_sub_text_color"
+                            android:textSize="22sp"
+                            tools:text="2"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:text="@string/count"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
 

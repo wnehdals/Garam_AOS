@@ -22,7 +22,6 @@
     <color name="blue_200">#238bfe</color>
     <color name="blue_100">#bddcff</color>
 
-    <color name="red_100">#ffb1b1"</color>
     <color name="red_200">#eb5757</color>
 
     <color name="green_100">#a9f2a4</color>
@@ -31,4 +30,23 @@
     <color name="blue_600">#2f80ed</color>
     <color name="blue_700">#116acc</color>
     <color name="blue_800">#b3cee2</color>
+    
+    <color name="blue_background_color">#C5DCFA</color>
+    <color name="blue_prim_text_color">#0A3977</color>
+    <color name="blue_sub_text_color">#5096F1</color>
+
+    <color name="green_background_color">#C5F2C7</color>
+    <color name="green_prim_text_color">#1F8B24</color>
+
+    <color name="brown_background_color">#FBE5C9</color>
+    <color name="brown_prim_text_color">#BF710F</color>
+
+    <color name="red_background_color">#FCD0CF</color>
+    <color name="red_prim_text_color">#DA100B</color>
+
+    <color name="gray_background_color">#E0E0E0</color>
+    <color name="gray_prim_text_color">#A1A1A1</color>
+
+    <color name="yellow_prim_text_color">#ffff00</color>
+    <color name="yellow_sub_text_color">#ffea00</color>
 </resources>

@@ -1,8 +1,11 @@
 package com.jdm.garam.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import com.jdm.garam.R
 import com.jdm.garam.base.ViewBindingFragment
 import com.jdm.garam.data.response.CoronaStatistic
@@ -15,6 +18,20 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_home
     private val viewModel: HomeViewModel by viewModel()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(System.currentTimeMillis() - backPressedTime < 2000){
+                    requireActivity().finish()
+                } else {
+                    showBackpressedToastMessage()
+                    backPressedTime = System.currentTimeMillis()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callBack)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         /*
@@ -42,7 +59,12 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
             when(it) {
                 is BaseState.Success<*> -> {
                     var statistic = it.SuccessResp as CoronaStatistic
-                    Log.e("sub", statistic.infected.toString())
+                    binding.homeCoronaPager1.itemPager1CountNumber.text = statistic.sum
+                    binding.homeCoronaPager1.itemPager1CuredNumber.text = statistic.cured
+                    binding.homeCoronaPager1.itemPager1CurrentNumber.text = statistic.infected
+                    binding.homeCoronaPager2.itemPager2CheckingNumber.text = statistic.inspected
+                    binding.homeCoronaPager2.itemPager2NegativeJudgeNumber.text = statistic.negative
+                    binding.homeCoronaPager3.itemPager3SuspiciousNumber.text = statistic.selfQuarantine
                 }
             }
         })
