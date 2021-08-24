@@ -37,6 +37,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), BottomNavigatio
         return when(item.itemId) {
             R.id.menu_home -> {
                 showFragment(HomeFragment.newInstance(), HomeFragment.TAG)
+
                 true
             }
             R.id.menu_theater -> {
@@ -60,6 +61,13 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), BottomNavigatio
             supportFragmentManager.beginTransaction().hide(fm).commitAllowingStateLoss()
         }
         findFragment?.let {
+            if(it is TheaterFragment) {
+                it.setDispatcher()
+            } else if(it is HomeFragment) {
+                it.setDispatcher()
+            } else {
+                (it as BusFragment).setDispatcher()
+            }
             supportFragmentManager.beginTransaction().show(it).commitAllowingStateLoss()
         } ?: kotlin.run {
             supportFragmentManager.beginTransaction()

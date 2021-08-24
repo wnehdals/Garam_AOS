@@ -41,6 +41,9 @@ class BusFragment : ViewBindingFragment<FragmentBusBinding>() {
     override fun subscribe() {
 
     }
+    fun setDispatcher() {
+        requireActivity().onBackPressedDispatcher.addCallback(this, callBack)
+    }
     fun initEvent() {
         with(binding) {
             busType1.setOnClickListener {

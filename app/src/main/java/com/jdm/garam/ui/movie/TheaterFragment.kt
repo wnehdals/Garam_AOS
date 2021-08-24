@@ -2,6 +2,7 @@ package com.jdm.garam.ui.movie
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.util.Xml
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,6 +43,9 @@ class TheaterFragment : ViewBindingFragment<FragmentTheaterBinding>() {
                 }
             }
         }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callBack)
+    }
+    fun setDispatcher(){
         requireActivity().onBackPressedDispatcher.addCallback(this, callBack)
     }
     override fun subscribe() {

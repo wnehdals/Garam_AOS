@@ -32,6 +32,9 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callBack)
     }
+    fun setDispatcher() {
+        requireActivity().onBackPressedDispatcher.addCallback(this, callBack)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         /*
