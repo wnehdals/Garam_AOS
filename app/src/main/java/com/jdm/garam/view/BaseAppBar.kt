@@ -1,9 +1,11 @@
 package com.jdm.garam.view
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.ActionBar
@@ -41,12 +43,17 @@ class BaseAppBar(
             }
         }
         isActionBarSet = true
+        actionBar.elevation = 0f
     }
 
     fun setTitle(title: String) {
         checkCustomActionbarSet()
         val titleTextView = customAppBarView.findViewById<TextView>(R.id.title_text_view)
         titleTextView.text = title
+    }
+    fun setBackgroundColor(color: String) {
+        val linearLayout = customAppBarView.findViewById<LinearLayout>(R.id.base_app_bar_linearlayout)
+        linearLayout.setBackgroundColor(Color.parseColor(color))
     }
 
     fun setLeftButtonDrawable(@DrawableRes resId: Int) {

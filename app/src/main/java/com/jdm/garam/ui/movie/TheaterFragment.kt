@@ -39,8 +39,6 @@ class TheaterFragment : ViewBindingFragment<FragmentTheaterBinding>() {
                         }
                     }
 
-                } else {
-
                 }
             }
         }

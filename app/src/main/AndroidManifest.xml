@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jdm.garam">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".GaramApplication"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:allowBackup="false"
-        android:fullBackupContent="false"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Garam">
-        <activity android:name=".ui.movie.MovieActivity"></activity>
-        <activity android:name=".ui.main.MainActivity">
+        android:theme="@style/Theme.Garam"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.bus.station.BusStationActivity"></activity>
+        <activity android:name=".ui.bus.type.BusTypeActivity" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:theme="@style/Theme.Samso">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

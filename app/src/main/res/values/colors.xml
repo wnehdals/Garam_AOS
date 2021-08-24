@@ -6,7 +6,7 @@
     <color name="secondaryColor">#ffc0a5</color>
     <color name="secondaryLightColor">#fff3d6</color>
     <color name="secondaryDarkColor">#ca9076</color>
-    <color name="primaryTextColor">#ffffff</color>
+    <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="darkGray">#121212</color>
 
@@ -43,6 +43,7 @@
 
     <color name="red_background_color">#FCD0CF</color>
     <color name="red_prim_text_color">#DA100B</color>
+    <color name="red_gradient_color">#F5413D</color>
 
     <color name="gray_background_color">#E0E0E0</color>
     <color name="gray_prim_text_color">#A1A1A1</color>

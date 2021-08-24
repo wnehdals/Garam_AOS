@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +41,9 @@ open class ActivityBase : AppCompatActivity(), IProgressDialog {
             baseAppBar?.setTitle(title)
         }
     }
+    fun setAppBarColor(color: String) {
+        baseAppBar?.setBackgroundColor(color)
+    }
     fun appBarLeftButtonClicked(callback: (View) -> Unit) {
         baseAppBar?.leftButtonClickListener = callback
     }
@@ -47,7 +51,7 @@ open class ActivityBase : AppCompatActivity(), IProgressDialog {
         baseAppBar?.rightButtonClickListener = callback
     }
     fun setBackKey() {
-        baseAppBar?.setLeftButtonDrawable(R.drawable.ic_arrow_left)
+        baseAppBar?.setLeftButtonDrawable(R.drawable.ic_chevron_left)
         appBarLeftButtonClicked {
             onBackPressed()
         }
@@ -57,6 +61,9 @@ open class ActivityBase : AppCompatActivity(), IProgressDialog {
         compositeDisposable.addAll(*disposables)
     }
 
+    fun showFailToastMessage(message: String = getString(R.string.fail_load_data)) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 
 
 
