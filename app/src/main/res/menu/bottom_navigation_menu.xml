@@ -13,4 +13,8 @@
         android:id="@+id/menu_bus"
         android:icon="@drawable/ic_bus"
         android:title="@string/bus"/>
+    <item
+        android:id="@+id/menu_noti"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/notice"/>
 </menu>

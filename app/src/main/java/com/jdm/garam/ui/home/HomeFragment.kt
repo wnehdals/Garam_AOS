@@ -6,6 +6,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdLoader
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.jdm.garam.R
 import com.jdm.garam.base.ViewBindingFragment
 import com.jdm.garam.data.response.CoronaStatistic
@@ -56,6 +60,16 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
 
     override fun initView() {
         viewModel.getCoronaStatistic()
+        MobileAds.initialize(requireContext()){}
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+        binding.adView.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                val adRequest = AdRequest.Builder().build()
+                binding.adView.loadAd(adRequest)
+
+            }
+        }
     }
     override fun subscribe() {
         viewModel.coronaStatisticState.observe(viewLifecycleOwner,{
