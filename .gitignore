@@ -79,6 +79,7 @@ vcs.xml
 # key
 Key.xml
 
+GaramKeys.jks
 # lint
 lint/intermediates/
 lint/generated/
