@@ -44,7 +44,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), BottomNavigatio
         MobileAds.initialize(this@MainActivity){}
         /* 전면광고 */
         var adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this@MainActivity,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(this@MainActivity,"ca-app-pub-9955048675507406/5603883842", adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
             }

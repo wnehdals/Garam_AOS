@@ -134,7 +134,7 @@ class AppOpenManager(myApplication: GaramApplication):  LifecycleObserver,Applic
 
     companion object {
         private const val LOG_TAG = "AppOpenManager"
-        private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/3419835294"
+        private const val AD_UNIT_ID = "ca-app-pub-9955048675507406/1303522665"
         private var isShowingAd = false
     }
 
