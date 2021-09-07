@@ -12,8 +12,10 @@ import com.jdm.garam.ui.bus.station.BusStationViewModel
 import com.jdm.garam.ui.bus.type.BusTypeViewModel
 import com.jdm.garam.ui.home.HomeViewModel
 import com.jdm.garam.ui.main.MainViewModel
+import com.jdm.garam.util.BUS
 import com.jdm.garam.util.MenuChangeEventBus
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val appModule = module {
@@ -26,6 +28,6 @@ val appModule = module {
     single<CoronaRepository> { CoronaRepositoryImpl(get()) }
     single<BusRepository> { BusRepositoryImpl(get()) }
 
-    single<BusDataSource> { RemoteBusDataSource() }
+    single<BusDataSource> { RemoteBusDataSource(get(named(BUS))) }
     single<CoronaDataSource> { RemoteCoronaDataSource() }
 }

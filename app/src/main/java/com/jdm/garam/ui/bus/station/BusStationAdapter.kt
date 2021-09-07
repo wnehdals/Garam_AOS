@@ -1,11 +1,9 @@
 package com.jdm.garam.ui.bus.station
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jdm.garam.data.response.BusType
+import com.jdm.garam.data.response.bus.BusType
 import com.jdm.garam.databinding.ItemBusDescriptionBinding
 import com.jdm.garam.databinding.ItemBusEndBinding
 import com.jdm.garam.databinding.ItemBusMiddleBinding

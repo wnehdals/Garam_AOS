@@ -53,16 +53,7 @@
                     android:textColor="@color/blue_sub_text_color"
                     android:textSize="10sp"
                     android:text="@string/see_staion_list"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/item_bus_type_start_station"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintTop_toBottomOf="@+id/item_bus_type_description"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="asdfafgsdgfdfh"
-                    android:textColor="@color/blue_prim_text_color"
-                    android:textSize="14sp"/>
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/item_bus_type_start_time"
                     android:layout_width="0dp"
@@ -70,7 +61,7 @@
                     android:layout_marginTop="12dp"
                     app:layout_constraintEnd_toStartOf="@+id/item_bus_type_detail"
                     app:layout_constraintTop_toBottomOf="@+id/item_bus_type_description"
-                    app:layout_constraintStart_toEndOf="@+id/item_bus_type_start_station"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="4dp"
                     tools:text="asdfafgsdgfdfhdfghdfghdfghdfghdfghdfghdfghdfghdfghdfghdfghdfgh"
                     android:textColor="@color/blue_prim_text_color"
@@ -85,19 +76,10 @@
                     app:layout_constraintEnd_toStartOf="@+id/item_bus_type_detail"
                     android:layout_marginTop="6dp"/>
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/item_bus_type_end_station"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/item_bus_type_divide_line"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="asdfafgsdgfdfh"
-                    android:textColor="@color/blue_prim_text_color"
-                    android:textSize="14sp"/>
-                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/item_bus_type_end_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/item_bus_type_end_station"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/item_bus_type_divide_line"
                     app:layout_constraintEnd_toStartOf="@+id/item_bus_type_detail"
                     android:layout_marginStart="4dp"

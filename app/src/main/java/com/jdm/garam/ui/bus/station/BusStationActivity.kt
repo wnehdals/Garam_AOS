@@ -1,14 +1,11 @@
 package com.jdm.garam.ui.bus.station
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.jdm.garam.R
 import com.jdm.garam.base.ViewBindingActivity
-import com.jdm.garam.data.response.Bus
-import com.jdm.garam.data.response.BusType
+import com.jdm.garam.data.response.bus.Bus
+import com.jdm.garam.data.response.bus.BusType
 import com.jdm.garam.databinding.ActivityBusStationBinding
 import com.jdm.garam.state.BaseState
-import com.jdm.garam.ui.bus.type.BusTypeViewModel
 import com.jdm.garam.util.BUS_STATION_ID
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

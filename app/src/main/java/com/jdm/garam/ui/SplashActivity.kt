@@ -67,7 +67,8 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
                                         dialog?.dismiss()
                                         finish()
                                     }
-                                }
+                                },
+                                cancelable = false
                             )
                                 .show()
                         }
