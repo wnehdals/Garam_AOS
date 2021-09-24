@@ -14,23 +14,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Garam"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.calendar.GaramCalendarActivity"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9955048675507406~4603639274"/>
-        <activity android:name=".ui.main.MainActivity"
-            android:theme="@style/Theme.Samso"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".ui.bus.station.BusStationActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.bus.type.BusTypeActivity"
-            android:screenOrientation="portrait"/>
+            android:value="ca-app-pub-9955048675507406~4603639274" />
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Samso" />
+        <activity
+            android:name=".ui.bus.station.BusStationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.bus.type.BusTypeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.SplashActivity"
-            android:theme="@style/Theme.Samso"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Samso">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

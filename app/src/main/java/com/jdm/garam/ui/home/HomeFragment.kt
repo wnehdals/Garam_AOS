@@ -1,11 +1,13 @@
 package com.jdm.garam.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -15,6 +17,13 @@ import com.jdm.garam.base.ViewBindingFragment
 import com.jdm.garam.data.response.CoronaStatistic
 import com.jdm.garam.databinding.FragmentHomeBinding
 import com.jdm.garam.state.BaseState
+import com.jdm.garam.ui.bus.station.BusStationActivity
+import com.jdm.garam.ui.calendar.GaramCalendarActivity
+import com.jdm.garam.util.BUS_STATION_ID
+import com.jdm.garam.util.MainTabMenu
+import com.jdm.garam.util.MenuChangeEventBus
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -22,11 +31,12 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_home
     private val viewModel: HomeViewModel by viewModel()
+    private val menuChangeEventBus by inject<MenuChangeEventBus>()
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if(System.currentTimeMillis() - backPressedTime < 2000){
+                if (System.currentTimeMillis() - backPressedTime < 2000) {
                     requireActivity().finish()
                 } else {
                     showBackpressedToastMessage()
@@ -36,9 +46,11 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callBack)
     }
+
     fun setDispatcher() {
         requireActivity().onBackPressedDispatcher.addCallback(this, callBack)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         /*
@@ -60,7 +72,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
 
     override fun initView() {
         viewModel.getCoronaStatistic()
-        MobileAds.initialize(requireContext()){}
+        MobileAds.initialize(requireContext()) {}
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
         binding.adView.adListener = object : AdListener() {
@@ -70,10 +82,12 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
 
             }
         }
+        initEvent()
     }
+
     override fun subscribe() {
-        viewModel.coronaStatisticState.observe(viewLifecycleOwner,{
-            when(it) {
+        viewModel.coronaStatisticState.observe(viewLifecycleOwner, {
+            when (it) {
                 is BaseState.Success<*> -> {
                     var statistic = it.SuccessResp as CoronaStatistic
                     binding.homeCoronaPager1.itemPager1CountNumber.text = statistic.sum
@@ -81,10 +95,32 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                     binding.homeCoronaPager1.itemPager1CurrentNumber.text = statistic.infected
                     binding.homeCoronaPager2.itemPager2CheckingNumber.text = statistic.inspected
                     binding.homeCoronaPager2.itemPager2NegativeJudgeNumber.text = statistic.negative
-                    binding.homeCoronaPager3.itemPager3SuspiciousNumber.text = statistic.selfQuarantine
+                    binding.homeCoronaPager3.itemPager3SuspiciousNumber.text =
+                        statistic.selfQuarantine
                 }
             }
         })
+    }
+
+    private fun initEvent() {
+        with(binding) {
+            homeCalendarConstraintlayout.setOnClickListener {
+                Intent(requireContext(), GaramCalendarActivity::class.java).run {
+                    startActivity(this)
+                }
+            }
+            homeCalendarConstraintlayout2.setOnClickListener {
+                lifecycleScope.launch {
+                    menuChangeEventBus.changeMenu(MainTabMenu.NOTI)
+                }
+            }
+            homeCalendarConstraintlayout3.setOnClickListener {
+                lifecycleScope.launch {
+                    menuChangeEventBus.changeMenu(MainTabMenu.NOTI)
+                }
+            }
+        }
+
     }
 
     companion object {

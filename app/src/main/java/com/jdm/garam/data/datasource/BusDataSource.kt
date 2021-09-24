@@ -1,9 +1,9 @@
 package com.jdm.garam.data.datasource
 
-import com.jdm.garam.data.response.Bus
-import com.jdm.garam.data.response.CoronaStatistic
+import com.jdm.garam.data.response.bus.Bus
+import com.jdm.garam.data.response.bus.BusResp
 import io.reactivex.rxjava3.core.Single
 
 interface BusDataSource {
-    fun getBusData(url: String): Single<MutableList<Bus>>
+    fun getBusData(): Single<BusResp>
 }
