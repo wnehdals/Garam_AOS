@@ -1,12 +1,11 @@
 package com.jdm.garam.ui.bus.type
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jdm.garam.data.response.Bus
+import com.jdm.garam.data.response.bus.Bus
 import com.jdm.garam.databinding.ItemBusTypeBinding
 
 class BusTypeAdapter: ListAdapter<Bus, BusTypeAdapter.ViewHolder>(busDifUtil) {
@@ -29,12 +28,10 @@ class BusTypeAdapter: ListAdapter<Bus, BusTypeAdapter.ViewHolder>(busDifUtil) {
     class ViewHolder(val binding: ItemBusTypeBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Bus) {
             with(binding) {
-                itemBusTypeId.text = item.id
-                itemBusTypeDescription.text = item.description
-                itemBusTypeStartStation.text = item.startStation
-                itemBusTypeStartTime.text = item.startStationTime
-                itemBusTypeEndStation.text = item.endStation
-                itemBusTypeEndTime.text = item.endStationTime
+                itemBusTypeId.text = item.number
+                itemBusTypeDescription.text = item.title
+                itemBusTypeStartTime.text = item.startTime
+                itemBusTypeEndTime.text = item.endTime
             }
         }
     }

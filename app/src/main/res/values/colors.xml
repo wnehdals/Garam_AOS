@@ -50,4 +50,6 @@
 
     <color name="yellow_prim_text_color">#ffff00</color>
     <color name="yellow_sub_text_color">#ffea00</color>
+
+    <color name="transparent">#ffffffff</color>
 </resources>

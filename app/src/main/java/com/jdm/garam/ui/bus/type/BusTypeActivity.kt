@@ -3,7 +3,7 @@ package com.jdm.garam.ui.bus.type
 import android.content.Intent
 import com.jdm.garam.R
 import com.jdm.garam.base.ViewBindingActivity
-import com.jdm.garam.data.response.Bus
+import com.jdm.garam.data.response.bus.Bus
 import com.jdm.garam.databinding.ActivityBusTypeBinding
 import com.jdm.garam.state.BaseState
 import com.jdm.garam.ui.bus.station.BusStationActivity
@@ -38,8 +38,8 @@ class BusTypeActivity : ViewBindingActivity<ActivityBusTypeBinding>() {
     override fun initView() {
         setBaseAppBar(getString(R.string.bus))
         setBackKey()
-        var busTypeUrl = intent.getStringExtra(BUS_TYPE_ID)?:""
-        if(busTypeUrl != "") {
+        var busTypeUrl = intent.getIntExtra(BUS_TYPE_ID, 0)
+        if(busTypeUrl != 0) {
             viewModel.getBusList(busTypeUrl)
         }
         busTypeAdapter.apply {
