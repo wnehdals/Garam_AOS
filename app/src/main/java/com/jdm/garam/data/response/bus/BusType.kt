@@ -1,4 +1,4 @@
-package com.jdm.garam.data.response
+package com.jdm.garam.data.response.bus
 
 data class BusType(
     val type: Int,
@@ -6,8 +6,6 @@ data class BusType(
     val description: String = "",
     val stations: String = "",
     val startStation: String = "",
-    val startStationTime: String = "",
     val endStation: String = "",
-    val endStationTime: String= ""
 ) {
 }

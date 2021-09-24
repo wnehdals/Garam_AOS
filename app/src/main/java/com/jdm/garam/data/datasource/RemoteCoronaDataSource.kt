@@ -1,11 +1,13 @@
 package com.jdm.garam.data.datasource
 
+import com.jdm.garam.data.api.Api
 import com.jdm.garam.data.response.CoronaStatistic
+import com.jdm.garam.data.response.version.VersionResp
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 
-class RemoteCoronaDataSource: CoronaDataSource {
+class RemoteCoronaDataSource(private val api: Api): CoronaDataSource {
     override fun getCoronaStatistic(): Single<CoronaStatistic> {
 
         return Single.create { subscriber ->
@@ -34,5 +36,9 @@ class RemoteCoronaDataSource: CoronaDataSource {
 
 
         }
+    }
+
+    override fun getVersion(): Single<VersionResp> {
+        return api.getVersion()
     }
 }

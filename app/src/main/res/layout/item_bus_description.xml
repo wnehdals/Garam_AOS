@@ -5,7 +5,7 @@
     <data>
         <variable
             name="busType"
-            type="com.jdm.garam.data.response.BusType" />
+            type="com.jdm.garam.data.response.bus.BusType" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,29 +40,18 @@
             android:textColor="@color/black"
             tools:text="출발 터미널 "
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="@{busType.startStation}"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_bus_description_start_time"
             app:layout_constraintTop_toBottomOf="@+id/item_bus_description"/>
-        <TextView
-            android:id="@+id/item_bus_description_start_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/black"
-            tools:text="adsfgsdfghdghdgdg"
-            android:text="@{busType.startStationTime}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_bus_description"
-            app:layout_constraintStart_toEndOf="@+id/item_bus_description_start_station"/>
         <View
             android:id="@+id/item_bus_description_divide_line"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="4dp"
             android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/item_bus_description_start_time"
+            app:layout_constraintTop_toBottomOf="@+id/item_bus_description_start_station"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@color/gray_prim_text_color"/>
@@ -75,24 +64,12 @@
             android:layout_marginStart="16dp"
             android:textColor="@color/black"
             tools:text="종점터미널 "
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_bus_description_end_time"
             app:layout_constraintTop_toBottomOf="@+id/item_bus_description_divide_line"/>
-        <TextView
-            android:id="@+id/item_bus_description_end_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/black"
-            android:layout_marginEnd="16dp"
-            tools:text="adsfgsdfghdghdgdg"
-            android:text="@{busType.endStationTime}"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_bus_description_divide_line"
-            app:layout_constraintStart_toEndOf="@+id/item_bus_description_end_station"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 
 

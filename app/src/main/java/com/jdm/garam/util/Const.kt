@@ -14,3 +14,8 @@ const val STATION_TYPE_MIDDLE = 2
 const val STATION_TYPE_END = 3
 const val STATION_TYPE_DESC = 4
 const val NOTI_URL = "<iframe src=\"https://docs.google.com/forms/d/e/1FAIpQLSfGVaAe6VUrrPmW4d6pSBtx2rM35Aq1fAHUew3WG73G8qoKBA/viewform?embedded=true\" width=\"640\" height=\"469\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\">로드 중…</iframe>"
+const val BUS_URL = "https://ryrx8vpsi2.execute-api.us-east-2.amazonaws.com"
+const val BASE_URL = "https://jhi7xevof6.execute-api.ap-northeast-2.amazonaws.com/"
+const val BUS = "BUS"
+const val ARG_DAY = "ARG_DAY"
+const val ARG_DATE = "ARG_DATE"
