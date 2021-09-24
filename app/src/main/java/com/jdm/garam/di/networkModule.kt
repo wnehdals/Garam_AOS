@@ -2,6 +2,8 @@ package com.jdm.garam.di
 
 import com.jdm.garam.GaramApplication
 import com.jdm.garam.data.api.Api
+import com.jdm.garam.data.api.EncodInterceptor
+import com.jdm.garam.util.BASE_URL
 import com.jdm.garam.util.BUS
 import com.jdm.garam.util.BUS_URL
 import okhttp3.OkHttpClient
@@ -19,18 +21,19 @@ val networkModule = module {
             connectTimeout(10, TimeUnit.SECONDS)
             readTimeout(30, TimeUnit.SECONDS)
             writeTimeout(15, TimeUnit.SECONDS)
-            addInterceptor(HttpLoggingInterceptor().apply {
-                level = if (GaramApplication.instance.isApplicationDebug) {
-                    HttpLoggingInterceptor.Level.BODY
-                } else
-                    HttpLoggingInterceptor.Level.HEADERS
-            })
+                .addInterceptor(EncodInterceptor())
+                .addInterceptor(HttpLoggingInterceptor().apply {
+                    level = if (GaramApplication.instance.isApplicationDebug) {
+                        HttpLoggingInterceptor.Level.BODY
+                    } else
+                        HttpLoggingInterceptor.Level.HEADERS
+                })
         }.build()
     }
     single(named(BUS)) {
         Retrofit.Builder()
             .client(get(named(BUS)))
-            .baseUrl(BUS_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
@@ -39,4 +42,5 @@ val networkModule = module {
         provideApi(get(named(BUS)))
     }
 }
+
 fun provideApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)

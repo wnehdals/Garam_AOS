@@ -13,21 +13,75 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.jdm.garam.R
 import com.jdm.garam.base.ViewBindingActivity
+import com.jdm.garam.data.response.version.Version
 import com.jdm.garam.databinding.ActivitySplashBinding
+import com.jdm.garam.state.BaseState
 import com.jdm.garam.ui.main.MainActivity
 import com.jdm.garam.util.DialogUtil
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
     override val layoutId: Int
         get() = R.layout.activity_splash
-
+    private val viewModel: SplashViewModel by viewModel()
     override fun subscribe() {
+        viewModel.versionState.observe(this, {
+            when (it) {
+                is BaseState.Success<*> -> {
+                    var localVersion = getPackageVersion()
+                    var remoteVersion = (it.SuccessResp as Version).version
+                    if (remoteVersion == localVersion) {
+                        goToMainActivity()
+                    } else {
+                        showFailDialog()
+                    }
+                }
+                is BaseState.Fail<*> -> {
+                    showFailDialog()
+                }
+            }
+        })
+    }
+    private fun getPackageVersion(): Float {
+        var localVersion = -1f
+        var info: PackageInfo? = null
+        try {
+            info = packageManager.getPackageInfo(packageName, 0)
+            localVersion = info.versionName.toFloat()
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        return localVersion
+    }
+    private fun goToMainActivity() {
+        var intent = Intent(this@SplashActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+    private fun showFailDialog() {
+        DialogUtil.makeSimpleDialog(
+            context = this@SplashActivity,
+            title = getString(R.string.notice_update),
+            message = getString(R.string.notice_message),
+            positiveButtonText = "확인",
+            positiveButtonOnClickListener = object :
+                DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    dialog?.dismiss()
+                    finish()
+                }
+            },
+            cancelable = false
+        )
+            .show()
     }
 
     override fun initView() {
+        viewModel.getVersion()
+        /*
         lifecycleScope.launch {
             delay(3000)
             var remoteVersion = ""
@@ -76,7 +130,10 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
                 }
 
         }
+
+         */
     }
+
     private fun parseJson(json: String): String {
         try {
             var jsonObject = JSONObject(json)
