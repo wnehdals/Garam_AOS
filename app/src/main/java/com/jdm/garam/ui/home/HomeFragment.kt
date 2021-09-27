@@ -17,11 +17,10 @@ import com.jdm.garam.base.ViewBindingFragment
 import com.jdm.garam.data.response.CoronaStatistic
 import com.jdm.garam.databinding.FragmentHomeBinding
 import com.jdm.garam.state.BaseState
+import com.jdm.garam.ui.LinkActivity
 import com.jdm.garam.ui.bus.station.BusStationActivity
 import com.jdm.garam.ui.calendar.GaramCalendarActivity
-import com.jdm.garam.util.BUS_STATION_ID
-import com.jdm.garam.util.MainTabMenu
-import com.jdm.garam.util.MenuChangeEventBus
+import com.jdm.garam.util.*
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -118,6 +117,11 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                 lifecycleScope.launch {
                     menuChangeEventBus.changeMenu(MainTabMenu.NOTI)
                 }
+            }
+            homeCoronaStepDetail.setOnClickListener {
+                Intent(requireContext(), LinkActivity::class.java)
+                    .putExtra(LINK_URL, CORONA_STEP_INFO_URL)
+                    .run { startActivity(this) }
             }
         }
 

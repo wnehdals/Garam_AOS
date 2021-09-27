@@ -47,6 +47,35 @@
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_logo" />
+                <TextView
+                    android:id="@+id/home_corona_step"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="[거리두기 3단계]"
+                    android:textSize="16sp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_corona_info_title"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/home_corona_step_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue_500"
+                    android:text="@string/see_detail"
+                    android:textSize="12sp"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintStart_toEndOf="@+id/home_corona_step"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_corona_step"/>
+                <TextView
+                    android:id="@+id/home_corona_step_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/home_corona_step"
+                    tools:text="2021.09.21 ~ 2021.10.21"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:textSize="12sp"/>
 
                 <include
                     android:id="@+id/home_corona_pager_1"
@@ -57,7 +86,7 @@
                     android:layout_marginTop="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home_corona_info_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/home_corona_step_duration" />
 
                 <include
                     android:id="@+id/home_corona_pager_2"
