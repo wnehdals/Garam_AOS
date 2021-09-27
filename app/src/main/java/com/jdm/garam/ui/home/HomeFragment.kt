@@ -15,6 +15,7 @@ import com.google.android.gms.ads.MobileAds
 import com.jdm.garam.R
 import com.jdm.garam.base.ViewBindingFragment
 import com.jdm.garam.data.response.CoronaStatistic
+import com.jdm.garam.data.response.coronastep.CoronaStep
 import com.jdm.garam.databinding.FragmentHomeBinding
 import com.jdm.garam.state.BaseState
 import com.jdm.garam.ui.LinkActivity
@@ -22,6 +23,7 @@ import com.jdm.garam.ui.bus.station.BusStationActivity
 import com.jdm.garam.ui.calendar.GaramCalendarActivity
 import com.jdm.garam.util.*
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.bind
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -71,6 +73,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
 
     override fun initView() {
         viewModel.getCoronaStatistic()
+        viewModel.getCoronaStep()
         MobileAds.initialize(requireContext()) {}
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
@@ -96,6 +99,20 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                     binding.homeCoronaPager2.itemPager2NegativeJudgeNumber.text = statistic.negative
                     binding.homeCoronaPager3.itemPager3SuspiciousNumber.text =
                         statistic.selfQuarantine
+                }
+            }
+        })
+        viewModel.coronaStepState.observe(viewLifecycleOwner, {
+            when(it) {
+                is BaseState.Success<*> -> {
+                    var coronaStep = it.SuccessResp as CoronaStep
+                    binding.homeCoronaStep.text = coronaStep.step
+                    binding.homeCoronaStepDuration.text = coronaStep.duration
+                }
+                is BaseState.Fail<*> -> {
+                    var coronaStep = it.FailResp as CoronaStep
+                    binding.homeCoronaStep.text = coronaStep.step
+                    binding.homeCoronaStepDuration.text = coronaStep.duration
                 }
             }
         })
