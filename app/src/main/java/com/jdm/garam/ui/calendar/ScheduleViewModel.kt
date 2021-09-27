@@ -7,6 +7,7 @@ import com.jdm.garam.data.repository.ScheduleRepository
 import com.jdm.garam.data.repository.ScheduleRepositoryImpl
 import com.jdm.garam.state.BaseState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ScheduleViewModel(private val repository: ScheduleRepository): ViewModelBase() {
@@ -28,6 +29,7 @@ class ScheduleViewModel(private val repository: ScheduleRepository): ViewModelBa
             },{
 
             })
+            .addTo(compositeDisposable)
 
     }
 }
