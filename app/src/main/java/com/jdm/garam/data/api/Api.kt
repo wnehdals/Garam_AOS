@@ -2,6 +2,7 @@ package com.jdm.garam.data.api
 
 import com.jdm.garam.data.response.schedule.ScheduleResp
 import com.jdm.garam.data.response.bus.BusResp
+import com.jdm.garam.data.response.coronastep.CoronaStepResp
 import com.jdm.garam.data.response.version.VersionResp
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
@@ -16,5 +17,8 @@ interface Api {
 
     @GET("/prod/version")
     fun getVersion(): Single<VersionResp>
+
+    @GET("/prod/corona/step")
+    fun getCoronaStep(): Single<CoronaStepResp>
 
 }

@@ -8,6 +8,7 @@ import com.jdm.garam.data.repository.CoronaRepositoryImpl
 import com.jdm.garam.data.repository.ScheduleRepositoryImpl
 import com.jdm.garam.state.BaseState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SplashViewModel(private val repository: CoronaRepository): ViewModelBase() {
@@ -33,6 +34,7 @@ class SplashViewModel(private val repository: CoronaRepository): ViewModelBase()
             },{
 
             })
+            .addTo(compositeDisposable)
 
     }
 }
