@@ -15,9 +15,14 @@
         android:theme="@style/Theme.Garam"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.calendar.GaramCalendarActivity"
+            android:name=".ui.LinkActivity"
+            android:theme="@style/Theme.Samso"
             android:screenOrientation="portrait"
             android:exported="true" />
+        <activity
+            android:name=".ui.calendar.GaramCalendarActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"

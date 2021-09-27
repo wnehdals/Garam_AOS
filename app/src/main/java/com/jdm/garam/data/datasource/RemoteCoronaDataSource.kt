@@ -2,6 +2,7 @@ package com.jdm.garam.data.datasource
 
 import com.jdm.garam.data.api.Api
 import com.jdm.garam.data.response.CoronaStatistic
+import com.jdm.garam.data.response.coronastep.CoronaStepResp
 import com.jdm.garam.data.response.version.VersionResp
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup
@@ -40,5 +41,9 @@ class RemoteCoronaDataSource(private val api: Api): CoronaDataSource {
 
     override fun getVersion(): Single<VersionResp> {
         return api.getVersion()
+    }
+
+    override fun getCoronaStep(): Single<CoronaStepResp> {
+        return api.getCoronaStep()
     }
 }

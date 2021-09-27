@@ -9,6 +9,7 @@ const val BUS_TYPE_URL_3 = "https://www.samcheok.go.kr/specialty/00463/02461.web
 const val BUS_TYPE_URL_4 = "https://www.samcheok.go.kr/specialty/00463/02462.web"
 const val BUS_TYPE_URL_5 = "https://www.samcheok.go.kr/specialty/00463/02459.web"
 const val BUS_TYPE_URL_6 = "https://www.samcheok.go.kr/specialty/00463/02463.web"
+const val CORONA_STEP_INFO_URL = "http://ncov.mohw.go.kr/socdisBoardView.do?brdId=6&brdGubun=1"
 const val STATION_TYPE_START = 1
 const val STATION_TYPE_MIDDLE = 2
 const val STATION_TYPE_END = 3
@@ -19,3 +20,4 @@ const val BASE_URL = "https://jhi7xevof6.execute-api.ap-northeast-2.amazonaws.co
 const val BUS = "BUS"
 const val ARG_DAY = "ARG_DAY"
 const val ARG_DATE = "ARG_DATE"
+const val LINK_URL = "LINK_URL"

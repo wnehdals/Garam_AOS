@@ -15,6 +15,8 @@ class HomeViewModel(private val repository: CoronaRepository): ViewModelBase() {
     private val _coronaStatisticState = MutableLiveData<BaseState>(BaseState.Uninitialized)
     val coronaStatisticState: LiveData<BaseState> get() = _coronaStatisticState
 
+    private val _coronaStepState = MutableLiveData<BaseState>(BaseState.Uninitialized)
+    val coronaStepState: LiveData<BaseState> get() = _coronaStepState
 
     fun getCoronaStatistic() {
         repository.getCoronaStatistic()
@@ -24,6 +26,20 @@ class HomeViewModel(private val repository: CoronaRepository): ViewModelBase() {
                 when(it) {
                     is CoronaRepositoryImpl.Result.Success<*> -> _coronaStatisticState.value = BaseState.Success((it.data as CoronaStatistic))
                     is CoronaRepositoryImpl.Result.Fail<*> -> _coronaStatisticState.value = BaseState.Fail((it.data as CoronaStatistic))
+                }
+            },{
+
+            })
+            .addTo(compositeDisposable)
+    }
+    fun getCoronaStep() {
+        repository.getCoronaStep()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                when(it) {
+                    is CoronaRepositoryImpl.Result.Success<*> -> _coronaStepState.value = BaseState.Success(it.data)
+                    is CoronaRepositoryImpl.Result.Fail<*> -> _coronaStepState.value = BaseState.Fail(it.data)
                 }
             },{
 
