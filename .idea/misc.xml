@@ -4,16 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/compose-model-1632448057044.xml" value="0.75" />
+        <entry key="../../../../layout/compose-model-1632789961494.xml" value="2.0" />
+        <entry key="app/src/main/res/drawable-v24/bg_rect_stroke_blue500.xml" value="0.15885416666666666" />
         <entry key="app/src/main/res/drawable/bg_rect_radius_16_blue_bg.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/drawable/bg_rect_radius_16_brown_bg.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/bg_rect_radius_16_green_bg.xml" value="0.15885416666666666" />
         <entry key="app/src/main/res/drawable/bg_rect_stroke_gray.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/layout/activity_bus_station.xml" value="0.2296875" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/activity_corona_step.xml" value="0.2115036231884058" />
         <entry key="app/src/main/res/layout/activity_garam_calendar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_real_estate_main.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/corona_pager1.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/corona_pager2.xml" value="0.29257246376811596" />
+        <entry key="app/src/main/res/layout/corona_pager3.xml" value="0.18229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_bus.xml" value="0.18229166666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_building.xml" value="0.25" />
       </map>
     </option>
   </component>

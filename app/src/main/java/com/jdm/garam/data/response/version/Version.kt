@@ -7,4 +7,7 @@ data class Version(
     @SerializedName("version")
     @Expose
     val version: Float = 0f,
+    @SerializedName("force")
+    @Expose
+    val force: Boolean = false
 )

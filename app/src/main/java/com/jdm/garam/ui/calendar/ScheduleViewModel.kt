@@ -23,7 +23,7 @@ class ScheduleViewModel(private val repository: ScheduleRepository): ViewModelBa
                     is ScheduleRepositoryImpl.Result.Success<*> -> _scheduleState.value =
                         BaseState.Success(it.data as List<*>)
                     is ScheduleRepositoryImpl.Result.Fail<*> -> _scheduleState.value =
-                        BaseState.Success(it.data as List<*>)
+                        BaseState.Fail(it.data as List<*>)
 
                 }
             },{
