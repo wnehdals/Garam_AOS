@@ -69,6 +69,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), BottomNavigatio
         }
     }
 
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.menu_home -> {

@@ -99,11 +99,18 @@ dependencies {
     /* Dependency - Retrofit2 */
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
-    def paging_version = "3.0.0-beta02"
+
+    implementation 'com.tickaroo.tikxml:annotation:0.8.13'
+    implementation 'com.tickaroo.tikxml:core:0.8.13'
+    implementation 'com.tickaroo.tikxml:converter-htmlescape:0.8.13'
+    implementation 'com.tickaroo.tikxml:retrofit-converter:0.8.13'
+    annotationProcessor 'com.tickaroo.tikxml:processor:0.8.13'
+    //implementation "com.squareup.retrofit2:converter-simplexml:$retrofit_version"
+
+
+    def paging_version = "3.0.1"
 
     // koin
     implementation "org.koin:koin-core:$koin_version"
@@ -117,10 +124,8 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
 
-    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation("androidx.paging:paging-runtime:$paging_version")
 
-    // alternatively - without Android dependencies for tests
-    testImplementation "androidx.paging:paging-common:$paging_version"
     //jsoup
     implementation 'org.jsoup:jsoup:1.11.3'
 
