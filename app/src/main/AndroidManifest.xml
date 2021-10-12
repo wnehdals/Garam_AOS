@@ -15,10 +15,13 @@
         android:theme="@style/Theme.Garam"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.LinkActivity"
-            android:theme="@style/Theme.Samso"
-            android:screenOrientation="portrait"
+            android:name=".ui.realestate.RealEstateMainActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.LinkActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Samso" />
         <activity
             android:name=".ui.calendar.GaramCalendarActivity"
             android:exported="true"

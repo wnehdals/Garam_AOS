@@ -3,13 +3,10 @@ package com.jdm.garam.ui.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.jdm.garam.R
@@ -19,11 +16,10 @@ import com.jdm.garam.data.response.coronastep.CoronaStep
 import com.jdm.garam.databinding.FragmentHomeBinding
 import com.jdm.garam.state.BaseState
 import com.jdm.garam.ui.LinkActivity
-import com.jdm.garam.ui.bus.station.BusStationActivity
 import com.jdm.garam.ui.calendar.GaramCalendarActivity
+import com.jdm.garam.ui.realestate.RealEstateMainActivity
 import com.jdm.garam.util.*
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.bind
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -126,9 +122,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                 }
             }
             homeCalendarConstraintlayout2.setOnClickListener {
-                lifecycleScope.launch {
-                    menuChangeEventBus.changeMenu(MainTabMenu.NOTI)
-                }
+                goToRealEstateActivity()
             }
             homeCalendarConstraintlayout3.setOnClickListener {
                 lifecycleScope.launch {
@@ -142,6 +136,11 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
             }
         }
 
+    }
+    private fun goToRealEstateActivity() {
+        Intent(requireContext(), RealEstateMainActivity::class.java).run {
+            startActivity(this)
+        }
     }
 
     companion object {

@@ -32,15 +32,20 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
             when (it) {
                 is BaseState.Success<*> -> {
                     var localVersion = getPackageVersion()
-                    var remoteVersion = (it.SuccessResp as Version).version
-                    if (remoteVersion == localVersion) {
+                    var remoteVersion = (it.SuccessResp as Version)
+                    if (remoteVersion.version == localVersion && remoteVersion.force) {
                         goToMainActivity()
+                    } else if (remoteVersion.version == localVersion && !remoteVersion.force) {
+                        goToMainActivity()
+                    }
+                    else if(remoteVersion.version != localVersion && remoteVersion.force){
+                        showForceFailDialog()
                     } else {
                         showFailDialog()
                     }
                 }
                 is BaseState.Fail<*> -> {
-                    showFailDialog()
+                    showForceFailDialog()
                 }
             }
         })
@@ -61,7 +66,7 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
         startActivity(intent)
         finish()
     }
-    private fun showFailDialog() {
+    private fun showForceFailDialog() {
         DialogUtil.makeSimpleDialog(
             context = this@SplashActivity,
             title = getString(R.string.notice_update),
@@ -72,6 +77,23 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
                     dialog?.dismiss()
                     finish()
+                }
+            },
+            cancelable = false
+        )
+            .show()
+    }
+    private fun showFailDialog() {
+        DialogUtil.makeSimpleDialog(
+            context = this@SplashActivity,
+            title = getString(R.string.notice_update),
+            message = getString(R.string.notice_message),
+            positiveButtonText = "확인",
+            positiveButtonOnClickListener = object :
+                DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    dialog?.dismiss()
+                    goToMainActivity()
                 }
             },
             cancelable = false
