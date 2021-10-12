@@ -40,6 +40,17 @@
     <string name="day_6">금</string>
     <string name="day_7">토</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buildCreateAt">건축년도</string>
+    <string name="deal_date">계약일</string>
+    <string name="dong">법정동</string>
+    <string name="monthly_fee">월새금액</string>
+    <string name="deposit_fee">보증금액</string>
+    <string name="building_size">전용면적</string>
+    <string name="floor">층</string>
+    <string name="real_estate">전월세</string>
+    <string name="not_found">조회된 항목이 없습니다.</string>
+    <string name="real_estate_info_guild">출처 : 국토교통부 전월세 신고자료</string>
+    <string name="real_estate_rent_fee">전월세</string>
+
+
 </resources>

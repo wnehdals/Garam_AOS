@@ -3,9 +3,10 @@ package com.jdm.garam.di
 import com.jdm.garam.GaramApplication
 import com.jdm.garam.data.api.Api
 import com.jdm.garam.data.api.EncodInterceptor
-import com.jdm.garam.util.BASE_URL
-import com.jdm.garam.util.BUS
-import com.jdm.garam.util.BUS_URL
+import com.jdm.garam.data.api.RealEstateApi
+import com.jdm.garam.util.*
+import com.tickaroo.tikxml.TikXml
+import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
@@ -30,6 +31,14 @@ val networkModule = module {
                 })
         }.build()
     }
+    single(named(REAL_ESTATE)) {
+        Retrofit.Builder()
+            .client(get(named(BUS)))
+            .baseUrl(REAL_ESTATE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .build()
+    }
     single(named(BUS)) {
         Retrofit.Builder()
             .client(get(named(BUS)))
@@ -41,6 +50,10 @@ val networkModule = module {
     single(named(BUS)) {
         provideApi(get(named(BUS)))
     }
+    single(named(REAL_ESTATE)) {
+        provideRealEstateApi(get(named(REAL_ESTATE)))
+    }
 }
 
 fun provideApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
+fun provideRealEstateApi(retrofit: Retrofit): RealEstateApi = retrofit.create(RealEstateApi::class.java)
