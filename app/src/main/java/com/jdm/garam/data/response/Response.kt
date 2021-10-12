@@ -61,7 +61,7 @@ data class Building(
     val dong: String = "",
     @SerializedName("보증금액")
     @Expose
-    val deposit: String = "",
+    val deposit: String = "비공개",
     @SerializedName("아파트")
     @Expose
     val apartment: String = "",
@@ -79,7 +79,9 @@ data class Building(
     val areaForExclusiveUse: Float = 0f,
     @SerializedName("층")
     @Expose
-    val floor: Int = 0
+    val floor: Int = 0,
+    var type: Int = 0
+
 ) {
     fun getDate(): String {
         return "${dealYear}.${dealMonth}.${dealDay}"
