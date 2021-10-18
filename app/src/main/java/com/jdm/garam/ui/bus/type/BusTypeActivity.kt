@@ -56,11 +56,10 @@ class BusTypeActivity : ViewBindingActivity<ActivityBusTypeBinding>() {
         binding.busTypeRecyclerview.adapter = busTypeAdapter
     }
     private fun onClickRecyclerViewItem(bus: Bus) {
-        lifecycleScope.launch { menuChangeEventBus.changeMenu(MainTabMenu.THEATER) }
         goToBusStaionActivity(bus)
     }
     private fun goToBusStaionActivity(bus: Bus) {
-        Intent(this, MainActivity::class.java).run {
+        Intent(this, BusStationActivity::class.java).run {
             putExtra(BUS_STATION_ID, bus)
             startActivity(this)
         }
