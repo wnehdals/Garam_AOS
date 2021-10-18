@@ -33,12 +33,12 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
                 is BaseState.Success<*> -> {
                     var localVersion = getPackageVersion()
                     var remoteVersion = (it.SuccessResp as Version)
-                    if (remoteVersion.version == localVersion && remoteVersion.force) {
+                    if (remoteVersion.version <= localVersion && remoteVersion.force) {
                         goToMainActivity()
-                    } else if (remoteVersion.version == localVersion && !remoteVersion.force) {
+                    } else if (remoteVersion.version <= localVersion && !remoteVersion.force) {
                         goToMainActivity()
                     }
-                    else if(remoteVersion.version != localVersion && remoteVersion.force){
+                    else if(remoteVersion.version > localVersion && remoteVersion.force){
                         showForceFailDialog()
                     } else {
                         showFailDialog()
