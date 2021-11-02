@@ -2,19 +2,17 @@ package com.jdm.garam.viewmodel
 
 import com.jdm.garam.base.RxViewModelTest
 import com.jdm.garam.data.datasource.CoronaDataSource
-import com.jdm.garam.data.repository.CoronaRepository
-import com.jdm.garam.data.response.version.Version
-import com.jdm.garam.data.response.version.VersionResp
+import com.jdm.garam.data.response.coronastep.CoronaStep
 import com.jdm.garam.state.BaseState
-import com.jdm.garam.ui.SplashViewModel
+import com.jdm.garam.ui.home.HomeViewModel
 import com.jdm.garam.util.NetworkUseCase
 import kr.co.grow.app.data.protocol.TestCoronaDataSource
 import org.junit.Before
 import org.junit.Test
 import org.koin.test.inject
 
-internal class SplashViewModelTest: RxViewModelTest() {
-    private val splashViewModel by inject<SplashViewModel>()
+internal class HomeViewModelTest: RxViewModelTest() {
+    private val homeViewModel by inject<HomeViewModel>()
     private val datasource by inject<CoronaDataSource>()
 
     fun changeDataSourceUseCase(useCase: NetworkUseCase) {
@@ -25,29 +23,30 @@ internal class SplashViewModelTest: RxViewModelTest() {
 
     }
     @Test
-    fun `get fail Version response case`() {
+    fun `get fail CoronaStep response case`() {
         changeDataSourceUseCase(NetworkUseCase.Fail)
-        val testObservable = splashViewModel.versionState.test()
-        splashViewModel.getVersion()
+        val testObservable = homeViewModel.coronaStepState.test()
+        homeViewModel.getCoronaStep()
 
         testObservable.assertValueSequence(
             listOf(
                 BaseState.Uninitialized,
-                BaseState.Fail(Version())
+                BaseState.Fail(CoronaStep())
             )
         )
     }
     @Test
-    fun `get success Version response case`() {
+    fun `get success CoronaStep response case`() {
         changeDataSourceUseCase(NetworkUseCase.Success)
-        val testObservable = splashViewModel.versionState.test()
-        splashViewModel.getVersion()
+        val testObservable = homeViewModel.coronaStepState.test()
+        homeViewModel.getCoronaStep()
 
-        val version = Version(1.0f, false)
+        val response = CoronaStep("2021.01.01 ~ 2021.12.31","4단")
+
         testObservable.assertValueSequence(
             listOf(
                 BaseState.Uninitialized,
-                BaseState.Success(version)
+                BaseState.Success(response)
             )
         )
     }

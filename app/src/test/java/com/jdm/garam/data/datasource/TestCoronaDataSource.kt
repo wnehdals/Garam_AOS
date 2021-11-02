@@ -2,6 +2,7 @@ package kr.co.grow.app.data.protocol
 
 import com.jdm.garam.data.datasource.CoronaDataSource
 import com.jdm.garam.data.response.CoronaStatistic
+import com.jdm.garam.data.response.coronastep.CoronaStep
 import com.jdm.garam.data.response.coronastep.CoronaStepResp
 import com.jdm.garam.data.response.version.Version
 import com.jdm.garam.data.response.version.VersionResp
@@ -30,6 +31,20 @@ class TestCoronaDataSource : CoronaDataSource {
     }
 
     override fun getCoronaStep(): Single<CoronaStepResp> {
-        return Single.never()
+        return when (networkUseCase) {
+            NetworkUseCase.Success -> Single.create{ subscriber ->
+                val response = CoronaStepResp().apply {
+                    statusCode = 200
+                    body = CoronaStep().apply {
+                        duration = "2021.01.01 ~ 2021.12.31"
+                        step = "4단"
+                    }
+                }
+                subscriber.onSuccess(response)
+            }
+            NetworkUseCase.Fail -> Single.create { subscriber ->
+                subscriber.onSuccess(CoronaStepResp())
+            }
+        }
     }
 }
