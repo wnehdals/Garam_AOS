@@ -7,8 +7,8 @@ import com.jdm.garam.data.response.schedule.Schedule
 data class CoronaStep(
     @SerializedName("duration")
     @Expose
-    val duration: String = "",
+    var duration: String = "",
     @SerializedName("step")
     @Expose
-    val step: String = ""
+    var step: String = ""
 )

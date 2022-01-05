@@ -27,7 +27,7 @@ class SplashViewModel(private val repository: CoronaRepository): ViewModelBase()
                     }
                     is CoronaRepositoryImpl.Result.Fail<*> -> {
                         _versionState.value =
-                            BaseState.Success(it.data)
+                            BaseState.Fail(it.data)
                     }
 
                 }
