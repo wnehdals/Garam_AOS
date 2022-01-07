@@ -51,6 +51,8 @@
     <string name="not_found">조회된 항목이 없습니다.</string>
     <string name="real_estate_info_guild">출처 : 국토교통부 전월세 신고자료</string>
     <string name="real_estate_rent_fee">전월세</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
