@@ -3,27 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.calendar.GaramCalendarActivity">
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/calendar_year_textview"
+        android:layout_height="match_parent">
+        <com.applandeo.materialcalendarview.CalendarView
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:gravity="center"
-            tools:text="2021"/>
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/calendar_tablayout"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"/>
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/calendar_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-
-
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:headerColor="@color/blue_400" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
