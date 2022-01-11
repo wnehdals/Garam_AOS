@@ -18,6 +18,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="blue_400">#ff1B72D9</color>
     <color name="blue_500">#ff238bfe</color>
     <color name="blue_200">#238bfe</color>
     <color name="blue_100">#bddcff</color>

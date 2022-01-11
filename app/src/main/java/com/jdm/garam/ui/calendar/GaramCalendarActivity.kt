@@ -1,84 +1,111 @@
 package com.jdm.garam.ui.calendar
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import com.applandeo.materialcalendarview.EventDay
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.jdm.garam.R
 import com.jdm.garam.base.ViewBindingActivity
+import com.jdm.garam.data.response.schedule.Schedule
 import com.jdm.garam.databinding.ActivityGaramCalendarBinding
+import com.jdm.garam.state.BaseState
+import com.jdm.garam.util.DateUtil
+import com.jdm.garam.view.ScheduleFragmentDialog
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class GaramCalendarActivity : ViewBindingActivity<ActivityGaramCalendarBinding>() {
     override val layoutId: Int
         get() = R.layout.activity_garam_calendar
-    private val days: Array<String> by lazy {
-        resources.getStringArray(R.array.day_array)
-    }
-    private val viewpagerAdapter by lazy {
-        CalendarPagerAdapter(this)
-    }
+    private val viewModel: ScheduleViewModel by viewModel()
+    private val dateUtil = DateUtil()
     override fun subscribe() {
+        viewModel.scheduleState.observe(this, {
+            when (it) {
+                is BaseState.Loading -> {
+                    showProgressDialog()
+                }
+                is BaseState.Success<*> -> {
+                    hideProgressDialog()
+                    val list = it.SuccessResp as List<Schedule>
+                    setEventFromCalendar(list)
+                }
+                is BaseState.Fail<*> -> {
+                    hideProgressDialog()
+                    showFailToastMessage()
+                }
+            }
+        })
+
     }
 
+    private fun setEventFromCalendar(list: List<Schedule>) {
+        var maxDateOfMonth = dateUtil.getMaxDateOfMonth(viewModel.currentMonth)
+        for (i in list) {
+            for (j in 0..maxDateOfMonth) {
+                if (i.date == j) {
+                    var calendar = Calendar.getInstance()
+                    var year = binding.calendarView.currentPageDate.get(Calendar.YEAR)
+                    calendar.set(year, viewModel.currentMonth, j)
+                    viewModel.events.add(EventDay(calendar, R.drawable.ic_event_note))
+                }
+            }
+        }
+        binding.calendarView.setEvents(viewModel.events)
+    }
 
+    private fun initCalendar() {
+        val calendarMin = Calendar.getInstance()
+        calendarMin.add(Calendar.DAY_OF_MONTH, -30)
+        val calendarMax = Calendar.getInstance()
+        calendarMax.add(Calendar.DAY_OF_MONTH, +30)
+        binding.calendarView.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay?) {
+                eventDay?.let {
+                    var month = it.calendar.get(Calendar.MONTH)
+                    var day = it.calendar.get(Calendar.DATE)
+                    var schedules = viewModel.getDayEvent(month + 1, day)
+                    ScheduleFragmentDialog(
+                        "${month + 1}" + getString(R.string.month) + " ${day}" + getString(
+                            R.string.day
+                        ), schedules
+                    ).show(supportFragmentManager, TAG)
+                }
+
+
+            }
+
+        })
+        with(binding) {
+            calendarView.setMinimumDate(calendarMin)
+            calendarView.setMaximumDate(calendarMax)
+            calendarView.setOnForwardPageChangeListener {
+                viewModel.currentMonth += 1
+                if (Calendar.DECEMBER < viewModel.currentMonth) {
+                    viewModel.currentMonth = Calendar.JANUARY
+                }
+                viewModel.getScheduleData("${viewModel.currentMonth + 1}")
+            }
+            calendarView.setOnPreviousPageChangeListener {
+                viewModel.currentMonth -= 1
+                Log.e("month", viewModel.currentMonth.toString())
+                if (Calendar.JANUARY > viewModel.currentMonth) {
+                    viewModel.currentMonth = Calendar.DECEMBER
+                }
+                viewModel.getScheduleData("${viewModel.currentMonth + 1}")
+            }
+        }
+    }
 
     override fun initView() {
         setBaseAppBar(getString(R.string.schedule))
         setBackKey()
-        initDate()
+        viewModel.currentMonth = dateUtil.getCurrentMonth()
+        viewModel.getScheduleData("${viewModel.currentMonth + 1}")
 
+        initCalendar()
     }
-    private fun initDate() {
-        val utc = TimeZone.getTimeZone("UTC")
-        val currentDate = Calendar.getInstance(utc)
-        binding.calendarYearTextview.text = "${currentDate.get(Calendar.YEAR)}.${currentDate.get(Calendar.MONTH).plus(1)}"
-        setDate(currentDate)
-        Log.e("dayofmonth", currentDate.getActualMaximum(Calendar.DAY_OF_MONTH).toString())
-        binding.calendarViewpager.setCurrentItem(currentDate.get(Calendar.DAY_OF_WEEK).minus(1))
 
-    }
-    private fun setDate(currentDate: Calendar) {
-        var list = mutableListOf<String>()
-        var dateList = mutableListOf<String>()
-        var basic = currentDate.get(Calendar.DAY_OF_WEEK)
-        for(i in (basic -1) downTo 1) {
-            val utc = TimeZone.getTimeZone("UTC")
-            val currentDate = Calendar.getInstance(utc)
-            currentDate.add(Calendar.DAY_OF_WEEK, -i)
-            var month = currentDate.get(Calendar.MONTH).plus(1)
-            var date = currentDate.get(Calendar.DATE).toString()
-            var day = getDay(currentDate.get(Calendar.DAY_OF_WEEK))
-            list.add("${date}\n${day}")
-            dateList.add("${month}\n${date}")
-        }
-        val utc = TimeZone.getTimeZone("UTC")
-        val currentDate = Calendar.getInstance(utc)
-        var date = currentDate.get(Calendar.DATE).toString()
-        var day = getDay(currentDate.get(Calendar.DAY_OF_WEEK))
-        var month = currentDate.get(Calendar.MONTH).plus(1)
-        list.add("${date}\n${day}")
-        dateList.add("${month}\n${date}")
-        for(i in 1..(7-basic)) {
-            val utc = TimeZone.getTimeZone("UTC")
-            val currentDate = Calendar.getInstance(utc)
-            currentDate.add(Calendar.DAY_OF_WEEK, i)
-            var month = currentDate.get(Calendar.MONTH).plus(1)
-            var date = currentDate.get(Calendar.DATE).toString()
-            var day = getDay(currentDate.get(Calendar.DAY_OF_WEEK))
-            list.add("${date}\n${day}")
-            dateList.add("${month}\n${date}")
-        }
-        initTab(list, dateList)
-    }
-    private fun getDay(id: Int): String {
-        return days[id-1]
-    }
-    private fun initTab(list: MutableList<String>, dateList: MutableList<String>) {
-        binding.calendarViewpager.adapter =  CalendarPagerAdapter(this).apply { setDate(dateList) }
-        TabLayoutMediator(binding.calendarTablayout, binding.calendarViewpager) { tab, position ->
-            tab.text = list[position]
-        }.attach()
+       companion object {
+        private val TAG = GaramCalendarActivity::class.java.simpleName
     }
 }
