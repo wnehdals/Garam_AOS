@@ -34,7 +34,7 @@ data class Schedule(
     @SerializedName("title")
     @Expose
     var title: String = "",
-    @SerializedName("endDatge")
+    @SerializedName("endDate")
     @Expose
     var endDate: Int = 0
 

@@ -40,6 +40,9 @@
     <string name="day_6">금</string>
     <string name="day_7">토</string>
 
+    <string name="month">월</string>
+    <string name="day">일</string>
+
     <string name="buildCreateAt">건축년도</string>
     <string name="deal_date">계약일</string>
     <string name="dong">법정동</string>

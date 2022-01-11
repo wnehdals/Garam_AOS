@@ -2,16 +2,19 @@ package com.jdm.garam.view
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.jdm.garam.R
+import com.jdm.garam.data.response.schedule.Schedule
 import com.jdm.garam.databinding.FragmentEventDialogBinding
+import com.jdm.garam.ui.calendar.ScheduleAdapter
 
-class EventFragmentDialog : BottomSheetDialogFragment() {
+class ScheduleFragmentDialog(private var day: String, private var schedules: List<Schedule>) :
+    BottomSheetDialogFragment() {
     private lateinit var binding: FragmentEventDialogBinding
+    private val scheduleAdapter = ScheduleAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = true
@@ -21,6 +24,7 @@ class EventFragmentDialog : BottomSheetDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,5 +36,11 @@ class EventFragmentDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            scheduleDialogRecyclerview.adapter = scheduleAdapter
+            scheduleAdapter.submitList(schedules)
+            scheduleDialogTitle.text = day
+        }
     }
+
 }
