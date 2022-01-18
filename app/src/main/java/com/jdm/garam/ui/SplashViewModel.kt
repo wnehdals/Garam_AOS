@@ -1,7 +1,9 @@
 package com.jdm.garam.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.messaging.FirebaseMessaging
 import com.jdm.garam.base.ViewModelBase
 import com.jdm.garam.data.repository.CoronaRepository
 import com.jdm.garam.data.repository.CoronaRepositoryImpl
@@ -24,6 +26,7 @@ class SplashViewModel(private val repository: CoronaRepository): ViewModelBase()
                     is CoronaRepositoryImpl.Result.Success<*> -> {
                         _versionState.value =
                             BaseState.Success(it.data)
+                        getFCMToken()
                     }
                     is CoronaRepositoryImpl.Result.Fail<*> -> {
                         _versionState.value =
@@ -36,5 +39,10 @@ class SplashViewModel(private val repository: CoronaRepository): ViewModelBase()
             })
             .addTo(compositeDisposable)
 
+    }
+    fun getFCMToken() {
+        FirebaseMessaging.getInstance().token.addOnSuccessListener {
+            Log.e("fcmtoken", it)
+        }
     }
 }
