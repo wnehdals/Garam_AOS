@@ -17,6 +17,7 @@ import com.jdm.garam.databinding.FragmentHomeBinding
 import com.jdm.garam.state.BaseState
 import com.jdm.garam.ui.LinkActivity
 import com.jdm.garam.ui.calendar.GaramCalendarActivity
+import com.jdm.garam.ui.event.EventActivity
 import com.jdm.garam.ui.realestate.RealEstateMainActivity
 import com.jdm.garam.util.*
 import kotlinx.coroutines.launch
@@ -130,8 +131,9 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                 }
             }
             homeCoronaStepDetail.setOnClickListener {
-                Intent(requireContext(), LinkActivity::class.java)
-                    .putExtra(LINK_URL, CORONA_STEP_INFO_URL)
+                Intent(requireContext(), EventActivity::class.java)
+                    .putExtra(CAMPAIGN, CAMPAIGN_CORONA)
+                    .putExtra(CAMPAIGN_TITLE, CAMPAIGN_TITLE_CORONA_NOTI)
                     .run { startActivity(this) }
             }
         }
