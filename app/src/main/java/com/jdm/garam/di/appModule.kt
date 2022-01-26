@@ -7,6 +7,7 @@ import com.jdm.garam.ui.SplashViewModel
 import com.jdm.garam.ui.bus.station.BusStationViewModel
 import com.jdm.garam.ui.bus.type.BusTypeViewModel
 import com.jdm.garam.ui.calendar.ScheduleViewModel
+import com.jdm.garam.ui.event.EventViewModel
 import com.jdm.garam.ui.home.HomeViewModel
 import com.jdm.garam.ui.main.MainViewModel
 import com.jdm.garam.util.BUS
@@ -24,15 +25,18 @@ val appModule = module {
     viewModel { ScheduleViewModel(get()) }
     viewModel { SplashViewModel(get()) }
     viewModel { RealEstateViewModel(get()) }
+    viewModel { EventViewModel(get()) }
     single { MenuChangeEventBus() }
 
     single<CoronaRepository> { CoronaRepositoryImpl(get()) }
     single<BusRepository> { BusRepositoryImpl(get()) }
     single<ScheduleRepository> { ScheduleRepositoryImpl(get()) }
     single<RealEstateRepository> { RealEstateRepositoryImpl(get())}
+    single<CampaignRepository> {CampaignRepositoryImpl(get())}
 
     single<BusDataSource> { RemoteBusDataSource(get(named(BUS))) }
     single<CoronaDataSource> { RemoteCoronaDataSource(get(named(BUS))) }
     single<ScheduleDataSource> { RemoteScheduleDataSource(get(named(BUS))) }
     single<RealEstateDataSource> { RemoteRealEstateDataSource(get(named(REAL_ESTATE)))}
+    single<CampaignDataSource> { RemoteCampaignDataSource(get(named(BUS))) }
 }
