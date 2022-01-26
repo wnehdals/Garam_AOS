@@ -15,7 +15,12 @@
         android:theme="@style/Theme.Garam"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.event.EventActivity"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
             android:name=".ui.realestate.RealEstateMainActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".ui.LinkActivity"

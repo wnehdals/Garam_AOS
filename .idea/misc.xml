@@ -15,9 +15,12 @@
         <entry key="app/src/main/res/drawable/bg_rect_radius_16_top_white.xml" value="0.20092592592592592" />
         <entry key="app/src/main/res/drawable/bg_rect_stroke_gray.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/activity_bus_station.xml" value="0.2296875" />
+        <entry key="app/src/main/res/layout/activity_bus_type.xml" value="0.1033434650455927" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/activity_corona_step.xml" value="0.2115036231884058" />
+        <entry key="app/src/main/res/layout/activity_event.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_garam_calendar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_noti.xml" value="0.3619791666666667" />
         <entry key="app/src/main/res/layout/activity_real_estate_main.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/corona_pager1.xml" value="0.1" />
         <entry key="app/src/main/res/layout/corona_pager2.xml" value="0.29257246376811596" />
@@ -28,7 +31,14 @@
         <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_building.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_building_timeline.xml" value="0.16134751773049646" />
+        <entry key="app/src/main/res/layout/item_bus_description.xml" value="0.1828774062816616" />
+        <entry key="app/src/main/res/layout/item_bus_end.xml" value="0.29347826086956524" />
+        <entry key="app/src/main/res/layout/item_bus_start.xml" value="0.29347826086956524" />
+        <entry key="app/src/main/res/layout/item_bus_type.xml" value="0.29347826086956524" />
         <entry key="app/src/main/res/layout/item_calendar_event.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_event_big_text.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/item_event_img.xml" value="0.312807881773399" />
+        <entry key="app/src/main/res/layout/item_event_text.xml" value="0.37604166666666666" />
       </map>
     </option>
   </component>

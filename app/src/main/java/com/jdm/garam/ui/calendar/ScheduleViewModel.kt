@@ -20,6 +20,7 @@ class ScheduleViewModel(private val repository: ScheduleRepository) : ViewModelB
     val scheduleState: LiveData<BaseState> get() = _scheduleState
 
     fun getScheduleData(month: String) {
+        _scheduleState.value = BaseState.Loading
         repository.getScheduleData(month)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

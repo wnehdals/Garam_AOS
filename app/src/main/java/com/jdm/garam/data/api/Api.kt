@@ -3,6 +3,7 @@ package com.jdm.garam.data.api
 import com.jdm.garam.data.response.Response
 import com.jdm.garam.data.response.schedule.ScheduleResp
 import com.jdm.garam.data.response.bus.BusResp
+import com.jdm.garam.data.response.campaign.CampaignResp
 import com.jdm.garam.data.response.coronastep.CoronaStepResp
 import com.jdm.garam.data.response.version.VersionResp
 import io.reactivex.rxjava3.core.Single
@@ -22,6 +23,9 @@ interface Api {
 
     @GET("/prod/corona/step")
     fun getCoronaStep(): Single<CoronaStepResp>
+
+    @GET("/prod/event/{campaign}")
+    fun getCampaign(@Path("campaign") campaignId: String): Single<CampaignResp>
 
 
 }
