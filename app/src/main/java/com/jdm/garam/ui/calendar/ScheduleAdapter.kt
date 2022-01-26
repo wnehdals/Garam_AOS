@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jdm.garam.data.response.bus.Bus
 import com.jdm.garam.data.response.schedule.Schedule
 import com.jdm.garam.databinding.ItemCalendarEventBinding
 
 class ScheduleAdapter : ListAdapter<Schedule, ScheduleAdapter.ViewHolder>(scheduleDiffUtil) {
+    var onClick: (Schedule) -> Unit = {}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemCalendarEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -31,6 +33,7 @@ class ScheduleAdapter : ListAdapter<Schedule, ScheduleAdapter.ViewHolder>(schedu
                 eventStartDate.text = item.date.toString()
                 eventEndDate.text = item.endDate.toString()
                 eventTime.text = item.time
+                itemCalendarEventConstrinatlayout.setOnClickListener { onClick(item) }
             }
         }
     }

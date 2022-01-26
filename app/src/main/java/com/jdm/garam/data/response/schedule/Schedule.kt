@@ -36,7 +36,10 @@ data class Schedule(
     var title: String = "",
     @SerializedName("endDate")
     @Expose
-    var endDate: Int = 0
+    var endDate: Int = 0,
+    @SerializedName("campaignId")
+    @Expose
+    var campaignId: String = ""
 
 ) : Parcelable, Comparable<Schedule> {
     override fun compareTo(other: Schedule): Int {

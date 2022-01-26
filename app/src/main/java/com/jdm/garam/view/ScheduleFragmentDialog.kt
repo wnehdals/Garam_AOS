@@ -11,10 +11,14 @@ import com.jdm.garam.data.response.schedule.Schedule
 import com.jdm.garam.databinding.FragmentEventDialogBinding
 import com.jdm.garam.ui.calendar.ScheduleAdapter
 
-class ScheduleFragmentDialog(private var day: String, private var schedules: List<Schedule>) :
+class ScheduleFragmentDialog(
+    private var day: String,
+    private var schedules: List<Schedule>,
+) :
     BottomSheetDialogFragment() {
     private lateinit var binding: FragmentEventDialogBinding
     private val scheduleAdapter = ScheduleAdapter()
+    var itemClick: (Schedule) -> Unit = {}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = true
@@ -37,10 +41,15 @@ class ScheduleFragmentDialog(private var day: String, private var schedules: Lis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
+
+            scheduleAdapter.onClick = this@ScheduleFragmentDialog::dialogItemClick
             scheduleDialogRecyclerview.adapter = scheduleAdapter
             scheduleAdapter.submitList(schedules)
             scheduleDialogTitle.text = day
         }
+    }
+    fun dialogItemClick(item: Schedule) {
+        itemClick(item)
     }
 
 }

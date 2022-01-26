@@ -1,5 +1,6 @@
 package com.jdm.garam.ui.calendar
 
+import android.content.Intent
 import android.util.Log
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
@@ -8,6 +9,8 @@ import com.jdm.garam.base.ViewBindingActivity
 import com.jdm.garam.data.response.schedule.Schedule
 import com.jdm.garam.databinding.ActivityGaramCalendarBinding
 import com.jdm.garam.state.BaseState
+import com.jdm.garam.ui.event.EventActivity
+import com.jdm.garam.util.CAMPAIGN
 import com.jdm.garam.util.DateUtil
 import com.jdm.garam.view.ScheduleFragmentDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,9 +28,9 @@ class GaramCalendarActivity : ViewBindingActivity<ActivityGaramCalendarBinding>(
                     showProgressDialog()
                 }
                 is BaseState.Success<*> -> {
-                    hideProgressDialog()
                     val list = it.SuccessResp as List<Schedule>
                     setEventFromCalendar(list)
+                    hideProgressDialog()
                 }
                 is BaseState.Fail<*> -> {
                     hideProgressDialog()
@@ -68,7 +71,8 @@ class GaramCalendarActivity : ViewBindingActivity<ActivityGaramCalendarBinding>(
                         "${month + 1}" + getString(R.string.month) + " ${day}" + getString(
                             R.string.day
                         ), schedules
-                    ).show(supportFragmentManager, TAG)
+                    ).apply { itemClick = this@GaramCalendarActivity::onClickScheduleItem }
+                        .show(supportFragmentManager, TAG)
                 }
 
 
@@ -103,6 +107,13 @@ class GaramCalendarActivity : ViewBindingActivity<ActivityGaramCalendarBinding>(
         viewModel.getScheduleData("${viewModel.currentMonth + 1}")
 
         initCalendar()
+    }
+    private fun onClickScheduleItem(item: Schedule) {
+        if (item.campaignId.isNotEmpty()) {
+            Intent(this, EventActivity::class.java)
+                .putExtra(CAMPAIGN, item.campaignId)
+                .run { startActivity(this) }
+        }
     }
 
        companion object {
