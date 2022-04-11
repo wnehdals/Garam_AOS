@@ -32,21 +32,4 @@ class HomeViewModel(private val repository: CoronaRepository): ViewModelBase() {
             })
             .addTo(compositeDisposable)
     }
-    fun getCoronaStep() {
-        repository.getCoronaStep()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                when(it) {
-                    is CoronaRepositoryImpl.Result.Success<*> -> _coronaStepState.value = BaseState.Success(it.data)
-                    is CoronaRepositoryImpl.Result.Fail<*> -> _coronaStepState.value = BaseState.Fail(it.data)
-                }
-            },{
-
-            })
-            .addTo(compositeDisposable)
-    }
-
-
-
 }
