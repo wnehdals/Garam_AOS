@@ -5,6 +5,12 @@
       <map>
         <entry key="../../../../layout/compose-model-1632448057044.xml" value="0.75" />
         <entry key="../../../../layout/compose-model-1632789961494.xml" value="2.0" />
+        <entry key="..\:/Users/jdm/Documents/Garam_AOS/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/jdm/Documents/Garam_AOS/app/src/main/res/layout/corona_pager1.xml" value="0.1" />
+        <entry key="..\:/Users/jdm/Documents/Garam_AOS/app/src/main/res/layout/corona_pager2.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/jdm/Documents/Garam_AOS/app/src/main/res/layout/fragment_event_dialog.xml" value="0.1875" />
+        <entry key="..\:/Users/jdm/Documents/Garam_AOS/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/jdm/Documents/Garam_AOS/app/src/main/res/layout/item_calendar_event.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/background_dialog.xml" value="0.15462962962962962" />
         <entry key="app/src/main/res/drawable-v24/bg_rect_gray.xml" value="0.13703703703703704" />
         <entry key="app/src/main/res/drawable-v24/bg_rect_gray_radius.xml" value="0.13703703703703704" />
@@ -42,7 +48,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

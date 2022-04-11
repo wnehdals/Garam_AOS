@@ -1,8 +1,6 @@
 package com.jdm.garam.data.api
 
-import com.jdm.garam.data.response.Response
 import com.jdm.garam.data.response.ResponseX
-import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
