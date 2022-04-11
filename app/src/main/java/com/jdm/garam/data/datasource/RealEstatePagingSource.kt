@@ -1,6 +1,5 @@
 package com.jdm.garam.data.datasource
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.jdm.garam.data.api.RealEstateApi

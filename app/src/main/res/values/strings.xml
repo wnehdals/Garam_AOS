@@ -8,9 +8,11 @@
     <string name="inspected_human">확진자</string>
     <string name="current">현재</string>
     <string name="count">명</string>
-    <string name="cured">완치</string>
+    <string name="cured">해제</string>
     <string name="total">누적</string>
-    <string name="sicker">의사환자</string>
+    <string name="new_inspect">신규</string>
+    <string name="sicker">자가격리자</string>
+    <string name="current_sicker">자가격리중</string>
     <string name="checking">검사중</string>
     <string name="negative_judge">음성판정</string>
     <string name="suspicious_human">자가격리자</string>
