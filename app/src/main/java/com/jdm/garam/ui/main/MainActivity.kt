@@ -84,10 +84,6 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), BottomNavigatio
                 showFragment(TheaterFragment.newInstance(), TheaterFragment.TAG)
                 true
             }
-            R.id.menu_bus -> {
-                showFragment(BusFragment.newInstance(), BusFragment.TAG)
-                true
-            }
             R.id.menu_noti -> {
                 showFragment(NotiFragment.newInstance(), NotiFragment.TAG)
                 true

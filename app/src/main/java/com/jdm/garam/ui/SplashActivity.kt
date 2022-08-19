@@ -28,17 +28,16 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
         get() = R.layout.activity_splash
     private val viewModel: SplashViewModel by viewModel()
     override fun subscribe() {
-        viewModel.versionState.observe(this, {
+        viewModel.versionState.observe(this) {
             when (it) {
                 is BaseState.Success<*> -> {
                     var localVersion = getPackageVersion()
                     var remoteVersion = (it.SuccessResp as Version)
-                    if (remoteVersion.version <= localVersion && remoteVersion.force) {
+                    if (remoteVersion.version <= localVersion && remoteVersion.isForce) {
                         goToMainActivity()
-                    } else if (remoteVersion.version <= localVersion && !remoteVersion.force) {
+                    } else if (remoteVersion.version <= localVersion && !remoteVersion.isForce) {
                         goToMainActivity()
-                    }
-                    else if(remoteVersion.version > localVersion && remoteVersion.force){
+                    } else if (remoteVersion.version > localVersion && remoteVersion.isForce) {
                         showForceFailDialog()
                     } else {
                         showFailDialog()
@@ -48,14 +47,14 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
                     showForceFailDialog()
                 }
             }
-        })
+        }
     }
-    private fun getPackageVersion(): Float {
-        var localVersion = -1f
+    private fun getPackageVersion(): Int {
+        var localVersion = -1
         var info: PackageInfo? = null
         try {
             info = packageManager.getPackageInfo(packageName, 0)
-            localVersion = info.versionName.toFloat()
+            localVersion = info.versionCode
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }

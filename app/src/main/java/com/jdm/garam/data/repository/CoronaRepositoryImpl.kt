@@ -17,21 +17,20 @@ class CoronaRepositoryImpl(private val remoteCoronaDataSource: CoronaDataSource)
         }
     }
 
-    override fun getVersion(): Single<Result> {
-        return Single.create{ subscriber ->
-            remoteCoronaDataSource.getVersion()
-                .subscribe({
-                    if(it.statusCode == 200)
-                        subscriber.onSuccess(Result.Success(it.body))
-                    else
-                        subscriber.onSuccess(Result.Fail(Version()))
-                }, {
-                    subscriber.onSuccess(Result.Fail(Version()))
-                })
-
+    override fun getVersion(onSuccess: (Version) -> Unit, onError: (String?) -> Unit) {
+        val docRef = remoteCoronaDataSource.getVersion()!!
+        docRef.get().addOnSuccessListener {
+            if (it.data != null ) {
+                val k = it.data
+                val b = k?.get("versionCode")
+                val versionCode: Long = (it.data!!["versionCode"] ?: 0) as Long
+                val isForce: Boolean = (it.data!!["isFOrce"] ?: false) as Boolean
+                onSuccess(Version(isForce = isForce, version = versionCode))
+            }
+        }.addOnFailureListener {
+            onError(it.message)
         }
     }
-
 
     sealed class Result {
 

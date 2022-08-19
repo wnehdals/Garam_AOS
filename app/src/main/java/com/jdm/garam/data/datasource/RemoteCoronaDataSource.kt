@@ -1,5 +1,8 @@
 package com.jdm.garam.data.datasource
 
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.jdm.garam.data.api.Api
 import com.jdm.garam.data.response.CoronaStatistic
 import com.jdm.garam.data.response.version.VersionResp
@@ -30,8 +33,8 @@ class RemoteCoronaDataSource(private val api: Api): CoronaDataSource {
         }
     }
 
-    override fun getVersion(): Single<VersionResp> {
-        return api.getVersion()
+    override fun getVersion(): DocumentReference {
+        return FirebaseFirestore.getInstance().collection("version").document("Mr26TQojeyfN0nLpB2Dx")
     }
 
 }
