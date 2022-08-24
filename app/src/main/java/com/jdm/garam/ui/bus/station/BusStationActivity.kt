@@ -26,6 +26,7 @@ class BusStationActivity : ViewBindingActivity<ActivityBusStationBinding>() {
                     hideProgressDialog()
                     showFailToastMessage()
                 }
+                else -> {return@observe}
             }
         })
     }

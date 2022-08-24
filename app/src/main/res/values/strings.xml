@@ -32,6 +32,7 @@
     <string name="notice_message">새로운 버전으로 업데이트가 필요합니다.\n플레이스토어를 확인해주세요.</string>
     <string name="category">카테고리</string>
     <string name="schedule">일정</string>
+    <string name="office_phone">관공서\n전화번호</string>
     <string name="comming_soon">comming\nsoon</string>
 
     <string name="day_1">일</string>

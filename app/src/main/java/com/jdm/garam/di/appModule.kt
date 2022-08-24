@@ -10,8 +10,10 @@ import com.jdm.garam.ui.calendar.ScheduleViewModel
 import com.jdm.garam.ui.event.EventViewModel
 import com.jdm.garam.ui.home.HomeViewModel
 import com.jdm.garam.ui.main.MainViewModel
+import com.jdm.garam.ui.phonebook.PhoneBookViewModel
 import com.jdm.garam.util.BUS
 import com.jdm.garam.util.MenuChangeEventBus
+import com.jdm.garam.util.PHONE_BOOK
 import com.jdm.garam.util.REAL_ESTATE
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -26,6 +28,7 @@ val appModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { RealEstateViewModel(get()) }
     viewModel { EventViewModel(get()) }
+    viewModel { PhoneBookViewModel(get()) }
     single { MenuChangeEventBus() }
 
     single<CoronaRepository> { CoronaRepositoryImpl(get()) }
@@ -33,10 +36,13 @@ val appModule = module {
     single<ScheduleRepository> { ScheduleRepositoryImpl(get()) }
     single<RealEstateRepository> { RealEstateRepositoryImpl(get())}
     single<CampaignRepository> {CampaignRepositoryImpl(get())}
+    single<PhoneBookRepository> {PhoneBookRepositoryImpl(get())}
+
 
     single<BusDataSource> { RemoteBusDataSource(get(named(BUS))) }
     single<CoronaDataSource> { RemoteCoronaDataSource(get(named(BUS))) }
     single<ScheduleDataSource> { RemoteScheduleDataSource(get(named(BUS))) }
     single<RealEstateDataSource> { RemoteRealEstateDataSource(get(named(REAL_ESTATE)))}
     single<CampaignDataSource> { RemoteCampaignDataSource(get(named(BUS))) }
+    single<PhoneBookDataSource> { RemotePhoneBookDataSource(get(named(PHONE_BOOK))) }
 }

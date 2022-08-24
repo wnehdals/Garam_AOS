@@ -5,10 +5,6 @@ sealed class BaseState{
 
     object Loading: BaseState()         //로딩 상태
 
-    data class Error(                   //API 호출 실패
-        val error: Throwable
-    ) : BaseState()
-
     data class Success<T>(              //API 호출 성공 - code : 200
         val SuccessResp: T
     ): BaseState()

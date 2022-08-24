@@ -37,6 +37,7 @@ class EventActivity : ViewBindingActivity<ActivityEventBinding>() {
                     hideProgressDialog()
                     eventAdapter.addData(it.FailResp as MutableList<Event>)
                 }
+                else -> {return@observe}
             }
         })
     }

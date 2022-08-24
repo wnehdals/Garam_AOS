@@ -26,6 +26,7 @@ class HomeViewModel(private val repository: CoronaRepository): ViewModelBase() {
                 when(it) {
                     is CoronaRepositoryImpl.Result.Success<*> -> _coronaStatisticState.value = BaseState.Success((it.data as CoronaStatistic))
                     is CoronaRepositoryImpl.Result.Fail<*> -> _coronaStatisticState.value = BaseState.Fail((it.data as CoronaStatistic))
+                    else -> {return@subscribe}
                 }
             },{
 

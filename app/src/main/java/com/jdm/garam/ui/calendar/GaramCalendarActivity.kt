@@ -36,6 +36,7 @@ class GaramCalendarActivity : ViewBindingActivity<ActivityGaramCalendarBinding>(
                     hideProgressDialog()
                     showFailToastMessage()
                 }
+                else -> {return@observe}
             }
         })
 
@@ -87,7 +88,7 @@ class GaramCalendarActivity : ViewBindingActivity<ActivityGaramCalendarBinding>(
                 if (Calendar.DECEMBER < viewModel.currentMonth) {
                     viewModel.currentMonth = Calendar.JANUARY
                 }
-                viewModel.getScheduleData("${viewModel.currentMonth + 1}")
+                //viewModel.getScheduleData("${viewModel.currentMonth + 1}")
             }
             calendarView.setOnPreviousPageChangeListener {
                 viewModel.currentMonth -= 1
@@ -95,7 +96,7 @@ class GaramCalendarActivity : ViewBindingActivity<ActivityGaramCalendarBinding>(
                 if (Calendar.JANUARY > viewModel.currentMonth) {
                     viewModel.currentMonth = Calendar.DECEMBER
                 }
-                viewModel.getScheduleData("${viewModel.currentMonth + 1}")
+                //viewModel.getScheduleData("${viewModel.currentMonth + 1}")
             }
         }
     }
@@ -104,16 +105,19 @@ class GaramCalendarActivity : ViewBindingActivity<ActivityGaramCalendarBinding>(
         setBaseAppBar(getString(R.string.schedule))
         setBackKey()
         viewModel.currentMonth = dateUtil.getCurrentMonth()
-        viewModel.getScheduleData("${viewModel.currentMonth + 1}")
+        //viewModel.getScheduleData("${viewModel.currentMonth + 1}")
 
         initCalendar()
     }
     private fun onClickScheduleItem(item: Schedule) {
+        /*
         if (item.campaignId.isNotEmpty()) {
             Intent(this, EventActivity::class.java)
                 .putExtra(CAMPAIGN, item.campaignId)
                 .run { startActivity(this) }
         }
+
+         */
     }
 
        companion object {

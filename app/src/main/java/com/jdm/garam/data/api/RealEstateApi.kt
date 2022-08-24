@@ -15,4 +15,5 @@ interface RealEstateApi {
     @GET("/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptRent")
     suspend fun getAptRentData(@Query("serviceKey") serviceKey: String, @Query("LAWD_CD") lawdCd: Int = 42230, @Query("DEAL_YMD") dealYMD: Int, @Query("_type") type:String = "json"): ResponseX
 
+
 }

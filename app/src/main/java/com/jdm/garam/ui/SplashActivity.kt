@@ -46,6 +46,7 @@ class SplashActivity : ViewBindingActivity<ActivitySplashBinding>() {
                 is BaseState.Fail<*> -> {
                     showForceFailDialog()
                 }
+                else -> return@observe
             }
         }
     }

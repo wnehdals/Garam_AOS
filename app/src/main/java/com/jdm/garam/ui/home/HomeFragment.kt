@@ -15,6 +15,7 @@ import com.jdm.garam.data.response.CoronaStatistic
 import com.jdm.garam.databinding.FragmentHomeBinding
 import com.jdm.garam.state.BaseState
 import com.jdm.garam.ui.calendar.GaramCalendarActivity
+import com.jdm.garam.ui.phonebook.PhoneBookActivity
 import com.jdm.garam.ui.realestate.RealEstateMainActivity
 import com.jdm.garam.util.MainTabMenu
 import com.jdm.garam.util.MenuChangeEventBus
@@ -76,6 +77,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                     binding.homeCoronaInfoInspected.text = "${statistic.inspected}명"
                     binding.homeCoronaInfoCured.text = "${statistic.selfQuarantine}명"
                 }
+                else -> {return@observe}
             }
         }
 
@@ -96,6 +98,9 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                     menuChangeEventBus.changeMenu(MainTabMenu.NOTI)
                 }
             }
+            homePhoneBookConstraintlayout.setOnClickListener {
+                goToPhoneBookActivity()
+            }
         }
 
     }
@@ -103,6 +108,9 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
         Intent(requireContext(), RealEstateMainActivity::class.java).run {
             startActivity(this)
         }
+    }
+    private fun goToPhoneBookActivity() {
+        Intent(requireContext(), PhoneBookActivity::class.java).run { startActivity(this) }
     }
 
     companion object {

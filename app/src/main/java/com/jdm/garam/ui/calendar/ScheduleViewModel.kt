@@ -18,7 +18,7 @@ class ScheduleViewModel(private val repository: ScheduleRepository) : ViewModelB
     var scheduleList = listOf<Schedule>()
     private val _scheduleState = MutableLiveData<BaseState>(BaseState.Uninitialized)
     val scheduleState: LiveData<BaseState> get() = _scheduleState
-
+    /*
     fun getScheduleData(month: String) {
         _scheduleState.value = BaseState.Loading
         repository.getScheduleData(month)
@@ -39,6 +39,8 @@ class ScheduleViewModel(private val repository: ScheduleRepository) : ViewModelB
             })
             .addTo(compositeDisposable)
     }
+
+     */
 
     fun getDayEvent(month: Int, day: Int): List<Schedule> {
         return scheduleList.filter {

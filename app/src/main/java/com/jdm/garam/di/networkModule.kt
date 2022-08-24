@@ -3,6 +3,7 @@ package com.jdm.garam.di
 import com.jdm.garam.GaramApplication
 import com.jdm.garam.data.api.Api
 import com.jdm.garam.data.api.EncodInterceptor
+import com.jdm.garam.data.api.PhoneBookApi
 import com.jdm.garam.data.api.RealEstateApi
 import com.jdm.garam.util.*
 import com.tickaroo.tikxml.TikXml
@@ -14,6 +15,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
@@ -39,6 +41,14 @@ val networkModule = module {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
     }
+    single(named(PHONE_BOOK)) {
+        Retrofit.Builder()
+            .client(get(named(BUS)))
+            .baseUrl(PHONE_BOOK_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .build()
+    }
     single(named(BUS)) {
         Retrofit.Builder()
             .client(get(named(BUS)))
@@ -53,7 +63,11 @@ val networkModule = module {
     single(named(REAL_ESTATE)) {
         provideRealEstateApi(get(named(REAL_ESTATE)))
     }
+    single(named(PHONE_BOOK)) {
+        providePhoneBookApi(get(named(PHONE_BOOK)))
+    }
 }
 
 fun provideApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
 fun provideRealEstateApi(retrofit: Retrofit): RealEstateApi = retrofit.create(RealEstateApi::class.java)
+fun providePhoneBookApi(retrofit: Retrofit): PhoneBookApi = retrofit.create(PhoneBookApi::class.java)
